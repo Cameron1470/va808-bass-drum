@@ -16,6 +16,10 @@
       <FILE id="vzZu64" name="BassDrumSynthesiser.cpp" compile="1" resource="0"
             file="Source/BassDrumSynthesiser.cpp"/>
       <GROUP id="{9F128DD3-320A-1302-3462-3FB9774C164E}" name="VA808Components">
+        <FILE id="fkbgMz" name="BridgedTNetwork.cpp" compile="1" resource="0"
+              file="Source/VA808Components/BridgedTNetwork.cpp"/>
+        <FILE id="rrArco" name="BridgedTNetwork.h" compile="0" resource="0"
+              file="Source/VA808Components/BridgedTNetwork.h"/>
         <FILE id="GAdDGG" name="PulseShaper.cpp" compile="1" resource="0" file="Source/VA808Components/PulseShaper.cpp"/>
         <FILE id="Y65ssw" name="PulseShaper.h" compile="0" resource="0" file="Source/VA808Components/PulseShaper.h"/>
         <FILE id="E2QLCz" name="TriggerLogic.cpp" compile="1" resource="0"
