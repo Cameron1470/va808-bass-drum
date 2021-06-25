@@ -16,11 +16,13 @@
 #pragma once
 
 #include<JuceHeader.h>
+#include"BridgedTComponents/PulseShaperInput.h"
+#include"BridgedTComponents/FeedbackBufferInput.h"
+#include"BridgedTComponents/RetriggeringPulseInput.h"
 
 class BridgedTNetwork
 {
 public:
-    BridgedTNetwork():
 
     //--------------------------------------------------------------------------
     /**
@@ -32,23 +34,29 @@ public:
     */
     void setSampleRate(float SR);
 
+
+    void updateCoefficients();
+
     //--------------------------------------------------------------------------
     /**
     Get current sample of the bridged-T network process block
     */
-    float process(float V_bt1, float V_bt2, float V_bt3);
+    float process(float v_plus, float v_fb, float v_rp);
 
 
 private:
-    /// sampling frequency in Hz
-    float sampleRate = 0.0f;
+    /// constant used in bilinear transformation
+    float K = 0.0f;
 
-    ///
+    /// value of capacitor C41 (15 nF)
     float c41 = 1.5e-8;
 
-    ///
+    /// value of capacitor C42 (15 nF)
     float c42 = 1.5e-8;
 
+    /// value of resistor R161 (1 MOhms)
+    float r161 = 1.0e6;
+    
     /// value of resistor R165 (47 kOhms)
     float r165 = 4.7e4;
 
@@ -57,4 +65,23 @@ private:
     
     /// value of resistor R167 (1 MOhms)
     float r167 = 1e6;
+
+    /// value of resistor R170 (470 kOhms)
+    float r170 = 4.7e5;
+
+    float B2 = 15.0f;
+
+    PulseShaperInput v_btOne;
+
+    FeedbackBufferInput v_btTwo;
+
+    RetriggeringPulseInput v_btThree;
 };
+
+
+//=======================================
+
+
+
+
+

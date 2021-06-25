@@ -27,6 +27,11 @@ void BassDrumSynthVoice::prepareToPlay(double sampleRate)
 {
     triggerLogic.setSampleRate(sampleRate);
     pulseShaper.setSampleRate(sampleRate);
+    bridgedTNetwork.setSampleRate(sampleRate);
+    feedbackBuffer.setSampleRate(sampleRate);
+    toneStage.setSampleRate(sampleRate);
+    levelStage.setSampleRate(sampleRate);
+    outputStage.setSampleRate(sampleRate);
 }
 
 void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, int startSample, int numSamples)
@@ -40,7 +45,17 @@ void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, 
 
         float v_plus = pulseShaper.process(v_trig);
 
-        float currentSample = v_plus;
+        float v_bt = bridgedTNetwork.process(v_plus, v_fb, 0.0f);
+
+        v_fb = feedbackBuffer.process(v_bt);
+
+        float v_to = toneStage.process(v_bt);
+
+        float v_lev = levelStage.process(v_to);
+
+        float v_out = outputStage.process(v_lev);
+
+        float currentSample = v_out;
 
         // for each channel, write the currentSample float to the output
         for (int chan = 0; chan < outputBuffer.getNumChannels(); chan++)

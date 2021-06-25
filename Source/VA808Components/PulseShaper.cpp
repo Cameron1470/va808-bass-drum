@@ -17,10 +17,6 @@
 
 #include "PulseShaper.h"
 
-PulseShaper::PulseShaper()
-{
-    
-}
 
 void PulseShaper::setSampleRate(float SR)
 {
@@ -58,7 +54,7 @@ float PulseShaper::process(float v_trig)
     float v_plus = v_ps;
     if (v_plus < 0)
     {
-        v_plus = 0.71 * (exp(v_plus) - 1);
+        v_plus = 0.71f * (float(exp(v_plus)) - 1.0f);
     }
 
     // return v_plus, value at bridged-T op-amp's inverting input

@@ -1,25 +1,21 @@
 /*
   ==============================================================================
 
-    "PulseShaper.h"
+    "ToneStage.h"
     Roland TR-808 Virtual Analogue Modelling - MSc Project
 
-    Created: 24th June 2021
+    Created: 25th June 2021
     Author:  Cameron Smith, UoE s1338237
 
 
-    Class that represents the pulse shaper block of the VA model. a nonlinear
-    low shelf filter that delivers a shaped pulse to the bridged-T network's op-
-    amp inverting input
+    Class that represents the tone block of the VA model
 
   ==============================================================================
 */
 
 #pragma once
 
-#include<JuceHeader.h>
-
-class PulseShaper
+class ToneStage
 {
 public:
 
@@ -35,33 +31,41 @@ public:
 
     //--------------------------------------------------------------------------
     /**
-    Get current sample of the pulse shaper process block
+    Get current sample of the tone process block
     */
-    float process(float v_trig);
+    float process(float v_bt);
 
 private:
+
     /// sampling frequency in Hz
     float sampleRate = 0.0f;
 
-    /// value of capacitor C40 (15 nF)
-    float c40 = 1.5e-8;                 
-    
-    /// value of resistor R162 (4.7 kOhms)
-    float r162 = 4.7e3;
-    
-    /// value of resistor R163 (100 kOhms)
-    float r163 = 1.0e5;
+    /// value of capacitor C45 (100 nF)
+    float c45 = 1.0e-7;
 
-    /// coefficients of the discretized transfer function for pulse shaper filter core
+    /// value of resistor R171 (220 Ohms)
+    float r171 = 220;
+
+    /// value of resistor R172 (10 kOhms)
+    float r172 = 1.0e4;
+
+    /// maximum value of variable resistor VR5(10 kOhms)
+    float vr5 = 1.0e4;
+
+    /// VR5 mod [0,1] -- TONE KNOB,  0=high cutoff | 1=low cutoff
+    float tone = 0.3f;
+
+    /// coefficients of the discretized transfer function for tone stage
     float A0 = 0.0f;
     float B0 = 0.0f;
     float B1 = 0.0f;
     float A1 = 0.0f;
 
-    /// previous sample of input, v_trig(n-1)
-    float v_trigPrev1 = 0.0f;
+    /// previous sample of input, v_bt(n-1)
+    float v_btPrev1 = 0.0f;
 
-    /// previous sample of output, v_ps(n-1)
-    float v_psPrev1 = 0.0f;
+    /// previous sample of output, v_to(n-1)
+    float v_toPrev1 = 0.0f;
+
 
 };
