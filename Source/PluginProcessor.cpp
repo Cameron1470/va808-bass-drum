@@ -109,6 +109,8 @@ void VA808BassDrumAudioProcessor::changeProgramName (int index, const juce::Stri
 //==============================================================================
 void VA808BassDrumAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    bassDrumSynth.setCurrentPlaybackSampleRate(sampleRate);
+    
     for (int i = 0; i < voiceCount; i++)
     {
         BassDrumSynthVoice* v = dynamic_cast<BassDrumSynthVoice*>(bassDrumSynth.getVoice(i));

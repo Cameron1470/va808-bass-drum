@@ -23,12 +23,14 @@ class TriggerLogic
 public:
     TriggerLogic();
 
+    ~TriggerLogic();
+
     //--------------------------------------------------------------------------
     /**
     Updates sample rate and consequently the pulse length in samples
     @param sample rate in Hz
     */
-    void setSampleRate(float SR);
+    void updateSampleRate(float SR);
 
     //--------------------------------------------------------------------------
     /**
@@ -41,25 +43,54 @@ public:
     /**
     Get current sample of the trigger logic process block
     */
-    float process();
+    float triggerProcess();
+
+    //--------------------------------------------------------------------------
+    /**
+    Get current sample of the envelope generator process block
+    */
+    float envProcess();
 
 private:
     /// sampling frequency in Hz
     float sampleRate;
 
+    //=================================================
+    // PULSE VARIABLES
+
     /// length of the pulse in seconds (fixed as 1ms)
     float pulseLengthInSeconds = 0.001f;
 
-    // length of the pulse in samples
+    /// length of the pulse in samples (dependant on sample rate)
     float pulseLengthInSamples;
 
-    // is the triggering pulse currently active
-    bool active = false;
-
-    // common trigger signal voltage amplitude (4-14V)
+    /// common trigger signal voltage amplitude (4-14V)
     float v_ct = 0.0f;
 
-    // index, used to keep track of progress through the pulse duration
+    /// is the triggering pulse currently active
+    bool pulseActive = false;
+
+    /// index, used to keep track of progress through the pulse duration
     int pulseIndex = 0;
 
+    //=================================================
+    // ENVELOPE VARIABLES
+
+    /// length of the envelope in seconds (fixed as 5ms)
+    float envLengthInSeconds = 0.005f;
+
+    /// length of the envelope in samples (dependant on sample rate)
+    int envLengthInSamples;
+
+    /// amplitude of the envelope, fixed value
+    float envAmp = 12.406f;
+
+    /// is the envelope generator currently active
+    bool envActive = false;
+
+    /// index, used to keep track of progress through the envelope duration
+    int envIndex = 0;
+
+    /// pointer to v_env where the envelope data will be stored
+    float* v_env;
 };

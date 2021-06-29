@@ -25,7 +25,7 @@ void BassDrumSynthVoice::stopNote(float /*velocity*/, bool allowTailOff)
 
 void BassDrumSynthVoice::prepareToPlay(double sampleRate)
 {
-    triggerLogic.setSampleRate(sampleRate);
+    triggerLogic.updateSampleRate(sampleRate);
     pulseShaper.setSampleRate(sampleRate);
     bridgedTNetwork.setSampleRate(sampleRate);
     feedbackBuffer.setSampleRate(sampleRate);
@@ -41,7 +41,9 @@ void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, 
     {
         // your sample-by-sample DSP code here!
         // An example white noise generater as a placeholder - replace with your own code
-        float v_trig = triggerLogic.process();
+        float v_trig = triggerLogic.triggerProcess();
+
+        float v_env = triggerLogic.envProcess();
 
         float v_plus = pulseShaper.process(v_trig);
 
