@@ -15,6 +15,7 @@
 #include <JuceHeader.h>
 #include "VA808Components/TriggerLogic.h"
 #include "VA808Components/PulseShaper.h"
+#include "VA808Components/RetriggeringPulse.h"
 #include "VA808Components/BridgedTNetwork.h"
 #include "VA808Components/FeedbackBuffer.h"
 #include "VA808Components/ToneStage.h"
@@ -118,6 +119,9 @@ private:
     /// Instance of the PulseShaper class for the pulse shaper process block
     PulseShaper pulseShaper;
 
+    /// Instance of the RetriggeringPulse class for the retriggering pulse process block
+    RetriggeringPulse retriggeringPulse;
+
     /// Instance of the PulseShaper class for the bridged-T network process block
     BridgedTNetwork bridgedTNetwork;
 
@@ -134,7 +138,7 @@ private:
     OutputStage outputStage;
 
     /// adjustable gain value for the output level
-    float outputGain = 0.065;
+    float outputGain = 0.1;
 
     // stored value of v_fb, updated then used in the following sample calculation
     float v_fb = 0.0f;

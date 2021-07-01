@@ -2,11 +2,9 @@
   ==============================================================================
 
     "BridgedTNetwork.h"
-    Roland TR-808 Virtual Analogue Modelling - MSc Project
-
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 24th June 2021
     Author:  Cameron Smith, UoE s1338237
-
 
     Class that represents the bridged-T network of the VA model
 
@@ -16,9 +14,9 @@
 #pragma once
 
 #include<JuceHeader.h>
-#include"BridgedTComponents/PulseShaperInput.h"
-#include"BridgedTComponents/FeedbackBufferInput.h"
-#include"BridgedTComponents/RetriggeringPulseInput.h"
+#include"BridgedTComponents/PulseShaper.h"
+#include"BridgedTComponents/FeedbackBuffer.h"
+#include"BridgedTComponents/RetriggeringPulse.h"
 
 class BridgedTNetwork
 {
@@ -34,6 +32,10 @@ public:
     */
     void setSampleRate(float SR);
 
+
+    void updateParallelResistances();
+
+    void updateEffectiveResistance(float v_c);
 
     void updateCoefficients();
 
@@ -69,13 +71,39 @@ private:
     /// value of resistor R170 (470 kOhms)
     float r170 = 4.7e5;
 
+    float r_eff;
+    
+    float r_prl1;
+
+    float r_prl2;
+
+    float r_prl3;
+
     float B2 = 15.0f;
 
-    PulseShaperInput v_btOne;
+    HbtOne h_btOne;
 
-    FeedbackBufferInput v_btTwo;
+    HbtTwo h_btTwo;
 
-    RetriggeringPulseInput v_btThree;
+    HbtThree h_btThree;
+
+    HcOne h_cOne;
+
+    HcTwo h_cTwo;
+    
+    HcThree h_cThree;
+
+    float alpha = 14.315f;
+
+    float V0 = -0.5560f;
+
+    float m = 1.4765e-5;
+
+    float interpLow = 5.3762e4;
+
+    float interpHigh = 5.38e4;
+
+    float interpC = 5.3775e4;
 };
 
 

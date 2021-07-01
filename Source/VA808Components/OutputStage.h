@@ -1,9 +1,16 @@
 /*
   ==============================================================================
+    
+    "OutputStage.h"
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
+    Created: 25th June 2021
+    Author:  Cameron Smith, UoE s1338237
 
-    OutputStage.h
-    Created: 25 Jun 2021 3:01:29pm
-    Author:  csmit
+    Class that represents the tone block of the VA model, after being given the
+    sample rate the continuous-time coefficients will be evaluated and
+    subsequently the discrete-time coefficients through the bilinear transform.
+    The process function is called to get the next sample through the difference
+    equation.
 
   ==============================================================================
 */

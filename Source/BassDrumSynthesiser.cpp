@@ -27,6 +27,7 @@ void BassDrumSynthVoice::prepareToPlay(double sampleRate)
 {
     triggerLogic.updateSampleRate(sampleRate);
     pulseShaper.setSampleRate(sampleRate);
+    retriggeringPulse.setSampleRate(sampleRate);
     bridgedTNetwork.setSampleRate(sampleRate);
     feedbackBuffer.setSampleRate(sampleRate);
     toneStage.setSampleRate(sampleRate);
@@ -39,13 +40,14 @@ void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, 
     // iterate through the necessary number of samples (from startSample up to startSample + numSamples)
     for (int sampleIndex = startSample; sampleIndex < (startSample + numSamples); sampleIndex++)
     {
-        // your sample-by-sample DSP code here!
-        // An example white noise generater as a placeholder - replace with your own code
+        
         float v_trig = triggerLogic.triggerProcess();
+
+        float v_plus = pulseShaper.process(v_trig);
 
         float v_env = triggerLogic.envProcess();
 
-        float v_plus = pulseShaper.process(v_trig);
+        float v_rp = retriggeringPulse.process(v_env);
 
         float v_bt = bridgedTNetwork.process(v_plus, v_fb, 0.0f);
 

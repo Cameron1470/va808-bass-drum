@@ -32,6 +32,8 @@ TriggerLogic::~TriggerLogic()
 
 void TriggerLogic::updateSampleRate(float _sampleRate)
 {
+    v_env = nullptr;
+    
     // update sample rate
     sampleRate = _sampleRate;
 
