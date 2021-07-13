@@ -18,21 +18,11 @@
 
 #define M_PI 3.141592653589793238462643383279f
 
-TriggerLogic::TriggerLogic()
-{
-    
-}
 
-TriggerLogic::~TriggerLogic()
-{
-    // deleting the v_env pointer in private variables
-    delete[] v_env;
-}
 
 
 void TriggerLogic::updateSampleRate(float _sampleRate)
 {
-    v_env = nullptr;
     
     // update sample rate
     sampleRate = _sampleRate;
@@ -44,13 +34,17 @@ void TriggerLogic::updateSampleRate(float _sampleRate)
     envLengthInSamples = round(pulseLengthInSeconds * sampleRate);
 
     // calculating a tail length for the envelope decay
-    int tailLength = round(0.00125 * sampleRate);
+    int tailLength = round(0.00125f * sampleRate);
 
-    // creating pointer to a temporary array for the envelope
-    float* envelope = new float[envLengthInSamples + tailLength];
-    
-    // initializing pointer with array of envelope length
-    v_env = new float[envLengthInSamples + tailLength];
+    // calculating the total length of the envelope, main pulse and tail
+    float totalLength = envLengthInSamples + tailLength;
+
+    // creating a temporary vector for storing the pulse 
+    std::vector<float> envelope;
+    envelope.resize(totalLength);
+
+    // resizing envelope vector with total sample length
+    v_env.resize(totalLength);
 
     // initializing previous value variable, v_env(n-1)
     float v_envPrev = 0;
@@ -68,7 +62,7 @@ void TriggerLogic::updateSampleRate(float _sampleRate)
     for (int n = 0; n < envLengthInSamples; n++)
     {
         envelope[n] = envAmp;
-        envelope[n] = alpha * envelope[n] + (1 - alpha) * v_envPrev;
+        envelope[n] = alpha * envelope[n] + (1.0f - alpha) * v_envPrev;
         v_envPrev = envelope[n];
         v_env[n] = envelope[n];
     }
@@ -80,23 +74,21 @@ void TriggerLogic::updateSampleRate(float _sampleRate)
     cutoffFreq = 1400.0f * M_PI;
     
     // updating difference coefficient
-    alpha = (cutoffFreq / sampleRate) / (1 + cutoffFreq / sampleRate);
+    alpha = (cutoffFreq / sampleRate) / (1.0f + cutoffFreq / sampleRate);
 
     // performing second low pass filtering on the tail of the pulse to shape the decay
-    for (int n = envLengthInSamples; n < envLengthInSamples + tailLength; n++)
+    for (int n = envLengthInSamples; n < totalLength; n++)
     {
         envelope[n] = 0;
-        envelope[n] = alpha * envelope[n] + (1 - alpha) * v_envPrev;
+        envelope[n] = alpha * envelope[n] + (1.0f - alpha) * v_envPrev;
         v_envPrev = envelope[n];
 
-        int index = 2 * envLengthInSamples - n + tailLength + 1;
+        int index = 2 * envLengthInSamples - n + tailLength;
 
-        v_env[index] = 0.05 + envAmp - envelope[n];
+        v_env[index] = 0.05f + envAmp - envelope[n];
 
     }
 
-    // deleting the envelope pointer, not needed outside this function
-    delete[] envelope;
 }
 
 void TriggerLogic::setTriggerActive(float velocity)

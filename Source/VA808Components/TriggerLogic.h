@@ -21,9 +21,6 @@
 class TriggerLogic
 {
 public:
-    TriggerLogic();
-
-    ~TriggerLogic();
 
     //--------------------------------------------------------------------------
     /**
@@ -92,5 +89,5 @@ private:
     int envIndex = 0;
 
     /// pointer to v_env where the envelope data will be stored
-    float* v_env;
+    std::vector<float> v_env;
 };

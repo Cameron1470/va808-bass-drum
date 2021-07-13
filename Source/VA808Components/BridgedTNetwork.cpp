@@ -72,7 +72,7 @@ float BridgedTNetwork::process(float v_plus, float v_rp)
     float v_btThree = h_btThree.process(v_rp);
     
     // superposition of the bridged-T inputs
-    v_bt = v_btOne + v_btTwo; // +v_btThree;
+    v_bt = v_btOne + v_btTwo + v_btThree;
 
     // bridged-T output op-amp clip
     opAmpClip();
