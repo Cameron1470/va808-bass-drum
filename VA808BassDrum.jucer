@@ -20,30 +20,12 @@
       <FILE id="YVqaxp" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       <GROUP id="{9F128DD3-320A-1302-3462-3FB9774C164E}" name="VA808Components">
         <GROUP id="{278F5AD6-F448-2065-0648-1795141D9723}" name="BridgedTComponents">
-          <FILE id="Bj8gyR" name="FeedbackBufferInput.cpp" compile="1" resource="0"
-                file="Source/VA808Components/BridgedTComponents/FeedbackBufferInput.cpp"/>
           <FILE id="Lj8S2i" name="FeedbackBufferInput.h" compile="0" resource="0"
                 file="Source/VA808Components/BridgedTComponents/FeedbackBufferInput.h"/>
-          <FILE id="kZuEIS" name="FeedbackBufferInputC.cpp" compile="1" resource="0"
-                file="Source/VA808Components/BridgedTComponents/FeedbackBufferInputC.cpp"/>
-          <FILE id="IOVfop" name="FeedbackBufferInputC.h" compile="0" resource="0"
-                file="Source/VA808Components/BridgedTComponents/FeedbackBufferInputC.h"/>
-          <FILE id="ePDFvC" name="PulseShaperInput.cpp" compile="1" resource="0"
-                file="Source/VA808Components/BridgedTComponents/PulseShaperInput.cpp"/>
           <FILE id="j9xNh8" name="PulseShaperInput.h" compile="0" resource="0"
                 file="Source/VA808Components/BridgedTComponents/PulseShaperInput.h"/>
-          <FILE id="FLH4Wi" name="PulseShaperInputC.cpp" compile="1" resource="0"
-                file="Source/VA808Components/BridgedTComponents/PulseShaperInputC.cpp"/>
-          <FILE id="Q49Obi" name="PulseShaperInputC.h" compile="0" resource="0"
-                file="Source/VA808Components/BridgedTComponents/PulseShaperInputC.h"/>
-          <FILE id="C0nnUm" name="RetriggeringPulseInput.cpp" compile="1" resource="0"
-                file="Source/VA808Components/BridgedTComponents/RetriggeringPulseInput.cpp"/>
           <FILE id="vWe5AJ" name="RetriggeringPulseInput.h" compile="0" resource="0"
                 file="Source/VA808Components/BridgedTComponents/RetriggeringPulseInput.h"/>
-          <FILE id="bb6Sht" name="RetriggeringPulseInputC.cpp" compile="1" resource="0"
-                file="Source/VA808Components/BridgedTComponents/RetriggeringPulseInputC.cpp"/>
-          <FILE id="if7rn3" name="RetriggeringPulseInputC.h" compile="0" resource="0"
-                file="Source/VA808Components/BridgedTComponents/RetriggeringPulseInputC.h"/>
         </GROUP>
         <FILE id="fkbgMz" name="BridgedTNetwork.cpp" compile="1" resource="0"
               file="Source/VA808Components/BridgedTNetwork.cpp"/>
