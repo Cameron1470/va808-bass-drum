@@ -11,6 +11,9 @@
 
 #pragma once
 
+//==============================================================================
+// MAIN OUTPUT CLASS
+
 class HbtThree
 {
 public:
@@ -66,6 +69,10 @@ private:
     /// second previous sample of output, v_bt3(n-2)
     float v_bt3Prev2 = 0.0f;
 };
+
+
+//==============================================================================
+// INTERMEDIATE NODE OUTPUT CLASS
 
 class HcThree
 {

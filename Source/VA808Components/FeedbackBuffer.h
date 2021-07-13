@@ -57,7 +57,7 @@ private:
     float decay = 0.5f;
 
     /// voltage from rail being supplied to op-amps
-    float B2 = 15;
+    float B2 = 15.0f;
 
     /// coefficients of the discretized transfer function for feedback buffer
     float A0 = 0.0f;

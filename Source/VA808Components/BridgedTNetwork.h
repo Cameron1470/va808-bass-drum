@@ -14,9 +14,9 @@
 #pragma once
 
 #include<JuceHeader.h>
-#include"BridgedTComponents/PulseShaper.h"
-#include"BridgedTComponents/FeedbackBuffer.h"
-#include"BridgedTComponents/RetriggeringPulse.h"
+#include"BridgedTComponents/PulseShaperInput.h"
+#include"BridgedTComponents/FeedbackBufferInput.h"
+#include"BridgedTComponents/RetriggeringPulseInput.h"
 
 class BridgedTNetwork
 {
@@ -33,17 +33,21 @@ public:
     void setSampleRate(float SR);
 
 
-    void updateParallelResistances();
-
     void updateEffectiveResistance(float v_c);
 
     void updateCoefficients();
+
+    void updateFeedbackBuffer(float v_fb);
 
     //--------------------------------------------------------------------------
     /**
     Get current sample of the bridged-T network process block
     */
-    float process(float v_plus, float v_fb, float v_rp);
+    float process(float v_plus, float v_rp);
+
+    void opAmpClip();
+
+    void postprocessUpdate(float v_plus, float v_rp);
 
 
 private:
@@ -80,6 +84,8 @@ private:
     float r_prl3;
 
     float B2 = 15.0f;
+
+    float v_bt = 0.0f;
 
     HbtOne h_btOne;
 
