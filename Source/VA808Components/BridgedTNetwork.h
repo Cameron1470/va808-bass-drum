@@ -143,6 +143,8 @@ private:
     float interpHigh = 5.38e4;
 
     float interpC = 5.3775e4;
+
+    float v_fbPrev1 = 0.0f;
 };
 
 

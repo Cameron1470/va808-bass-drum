@@ -96,8 +96,10 @@ void BridgedTNetwork::postprocessUpdate(float v_plus, float v_fb, float v_rp)
     h_cThree.calculateCoefficients(K, r_prl3, r161, r167, c41, c42);
 
     float v_cOne = h_cOne.process(v_plus);
-    float v_cTwo = h_cTwo.process(v_fb);
+    float v_cTwo = h_cTwo.process(v_fbPrev1);
     float v_cThree = h_cThree.process(v_rp);
+
+    v_fbPrev1 = v_fb;
 
     // calculating v_c as a superposition of the three input contributions
     float v_c = v_cOne + v_cTwo + v_cThree;

@@ -80,8 +80,6 @@ void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, 
 
         bridgedTNetwork.postprocessUpdate(v_plus, v_fb, v_rp);
 
-        //v_fbPrev1 = v_fb;
-
         //===========================================
         //WRITING OUTPUT TO BUFFER
 
