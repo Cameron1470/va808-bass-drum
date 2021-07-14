@@ -2,29 +2,21 @@
   ==============================================================================
 
     "PulseShaper.cpp"
-    Roland TR-808 Virtual Analogue Modelling - MSc Project
-
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 24th June 2021
     Author:  Cameron Smith, UoE s1338237
 
-
-    Class that represents the pulse shaper block of the VA model. a nonlinear
-    low shelf filter that delivers a shaped pulse to the bridged-T network's op-
-    amp inverting input
-
+    ----------------------see header file for description-----------------------
   ==============================================================================
 */
 
 #include "PulseShaper.h"
 
 
-void PulseShaper::setSampleRate(float SR)
+void PulseShaper::setSampleRate(float sampleRate)
 {
-    // set sample rate
-    sampleRate = SR;
-
     // constant used in bilinear transformation substitution
-    float K = 2 * sampleRate;
+    float K = 2.0f * sampleRate;
 
     // calculating coefficients of continuous-time transfer function of the shelf filter core
     float beta1 = r162 * r163 * c40;
@@ -49,10 +41,9 @@ float PulseShaper::process(float v_trig)
     v_psPrev1 = v_ps;
     v_trigPrev1 = v_trig;
 
-
     // implementation of the memoryless nonlinear approximation of the diode's function
     float v_plus = v_ps;
-    if (v_plus < 0)
+    if (v_plus < 0.0f)
     {
         v_plus = 0.71f * (float(exp(v_plus)) - 1.0f);
     }

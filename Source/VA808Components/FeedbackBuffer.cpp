@@ -1,22 +1,21 @@
 /*
   ==============================================================================
 
-    FeedbackBuffer.cpp
-    Created: 25 Jun 2021 12:03:36pm
-    Author:  csmit
+    "FeedbackBuffer.h"
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
+    Created: 25th June 2021
+    Author:  Cameron Smith, UoE s1338237
 
+    ----------------------see header file for description-----------------------
   ==============================================================================
 */
 
 #include "FeedbackBuffer.h"
 
-void FeedbackBuffer::setSampleRate(float SR)
+void FeedbackBuffer::setSampleRate(float sampleRate)
 {
-    // set sample rate
-    sampleRate = SR;
-
     // constant used in bilinear transformation substitution
-    float K = 2 * sampleRate;
+    float K = 2.0f * sampleRate;
 
     // calculating coefficients of continuous-time transfer function of the feedback buffer stage
     float beta1 = -r169 * vr6 * decay * c43;

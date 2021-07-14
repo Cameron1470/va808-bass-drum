@@ -12,10 +12,14 @@
     bilinear transform. The process function is called to get the next sample 
     through the difference equation.
 
+    v_env    ---|low shelf filter|--->    v_rpc    ---|NL approx|--->     v_rp
+       ^                                                                   ^
+     input                                                               output
   ==============================================================================
 */
 
 #pragma once
+
 #include <JuceHeader.h>
 
 class RetriggeringPulse
@@ -35,13 +39,12 @@ public:
     //--------------------------------------------------------------------------
     /**
     Get current sample of the retriggering pulse process block
+
+    @param the input voltage to the process block (output of the envelope generator)
     */
     float process(float v_env);
 
 private:
-    /// sampling frequency in Hz
-    float sampleRate = 0.0f;
-
     /// value of capacitor C39 (33 nF)
     float c39 = 3.3e-8;
 

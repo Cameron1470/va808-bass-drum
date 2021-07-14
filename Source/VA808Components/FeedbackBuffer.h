@@ -2,11 +2,9 @@
   ==============================================================================
 
     "FeedbackBuffer.h"
-    Roland TR-808 Virtual Analogue Modelling - MSc Project
-
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 25th June 2021
     Author:  Cameron Smith, UoE s1338237
-
 
     Class that represents the feedback buffer block of the VA model
 
@@ -28,21 +26,19 @@ public:
 
     @param sample rate in Hz
     */
-    void setSampleRate(float SR);
+    void setSampleRate(float sampleRate);
 
     //--------------------------------------------------------------------------
     /**
     Get current sample of the feedback buffer process block
+
+    @param the input voltage to the process block (output of the bridged-T network)
     */
     float process(float v_bt);
 
 private:
-    
-    /// sampling frequency in Hz
-    float sampleRate = 0.0f;
-
     /// value of capacitor C43 (33 microF)
-    float c43 = 3.3e-8;
+    float c43 = 3.3e-5;
     
     /// value of resistor R164 (47 kOhms)
     float r164 = 4.7e4;
@@ -51,10 +47,10 @@ private:
     float r169 = 4.7e4;
 
     /// maximum value of variable resistor VR6(500 kOhms)
-    float  vr6 = 5.0e5;
+    float vr6 = 5.0e5;
 
     /// VR6 mod [0,1] -- DECAY KNOB, 0=short decay | 1=long decay
-    float decay = 0.5f;
+    float decay = 0.9f;
 
     /// voltage from rail being supplied to op-amps
     float B2 = 15.0f;

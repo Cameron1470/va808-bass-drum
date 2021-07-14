@@ -2,11 +2,9 @@
   ==============================================================================
 
     "LevelStage.h"
-    Roland TR-808 Virtual Analogue Modelling - MSc Project
-
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 25th June 2021
     Author:  Cameron Smith, UoE s1338237
-
 
     Class that represents the level block of the VA model
 
@@ -32,14 +30,12 @@ public:
     //--------------------------------------------------------------------------
     /**
     Get current sample of the level process block
+
+    @param the input voltage to the process block (output of the tone block)
     */
     float process(float v_to);
 
 private:
-
-    /// sampling frequency in Hz
-    float sampleRate = 0.0f;
-
     /// value of capacitor C47 (0.47 microF)
     float c47 = 4.7e-7;
 
@@ -47,7 +43,7 @@ private:
     float vr4 = 1.0e5;
 
     /// VR4 mod [0,1] -- LEVEL KNOB, 0=full volume | 1=muted
-    float level = 0.5f;
+    float level = 0.4f;
 
     /// coefficients of the discretized transfer function for level stage
     float A0 = 0.0f;

@@ -2,15 +2,11 @@
   ==============================================================================
 
     "TriggerLogic.cpp"
-    Roland TR-808 Virtual Analogue Modelling - MSc Project
-
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 24th June 2021
     Author:  Cameron Smith, UoE s1338237
 
-
-    Class that represents the trigger logic block of the VA model. When a note
-    is played in the synthesiser class a 1ms square-shaped pulse is generated
-
+    ----------------------see header file for description-----------------------
   ==============================================================================
 */
 
@@ -19,32 +15,27 @@
 #define M_PI 3.141592653589793238462643383279f
 
 
-
-
-void TriggerLogic::updateSampleRate(float _sampleRate)
+void TriggerLogic::updateSampleRate(float sampleRate)
 {
-    
-    // update sample rate
-    sampleRate = _sampleRate;
-
     // updating pulse length in samples by mulptiplying 1ms time duration and sample rate
     pulseLengthInSamples = round(pulseLengthInSeconds * sampleRate);
 
     // update envelope length in samples by multiplying 5ms time duration and sample rate
-    envLengthInSamples = round(pulseLengthInSeconds * sampleRate);
+    int envLengthInSamples = round(pulseLengthInSeconds * sampleRate);
 
-    // calculating a tail length for the envelope decay
-    int tailLength = round(0.00125f * sampleRate);
+    // calculating a tail length for the envelope decay in samples
+    int tailLength = round(envTailLengthInSeconds * sampleRate);
 
     // calculating the total length of the envelope, main pulse and tail
-    float totalLength = envLengthInSamples + tailLength;
+    totalEnvLength = envLengthInSamples + tailLength;
 
     // creating a temporary vector for storing the pulse 
     std::vector<float> envelope;
-    envelope.resize(totalLength);
+    envelope.resize(totalEnvLength);
 
-    // resizing envelope vector with total sample length
-    v_env.resize(totalLength);
+    // clearing and resizing envelope vector with total sample length
+    v_env.clear();
+    v_env.resize(totalEnvLength);
 
     // initializing previous value variable, v_env(n-1)
     float v_envPrev = 0;
@@ -52,11 +43,11 @@ void TriggerLogic::updateSampleRate(float _sampleRate)
     //=================================================
     // FILTERING THE PULSE (RISE)
 
-    // setting first cutoff value
+    // setting first cutoff frequency value for filtering
     float cutoffFreq = 550.0f * M_PI;
 
     // precomputing difference equation coefficient
-    float alpha = (cutoffFreq / sampleRate) / (1 + cutoffFreq / sampleRate);
+    float alpha = (cutoffFreq / sampleRate) / (1.0f + cutoffFreq / sampleRate);
 
     // performing first low pass filtering on the body of the pulse to achieve a rise
     for (int n = 0; n < envLengthInSamples; n++)
@@ -70,21 +61,23 @@ void TriggerLogic::updateSampleRate(float _sampleRate)
     //=================================================
     // FILTERING THE PULSE (FALL/DECAY)
 
-    // setting new cutoff value
+    // setting new cutoff frequency value for filter
     cutoffFreq = 1400.0f * M_PI;
     
     // updating difference coefficient
     alpha = (cutoffFreq / sampleRate) / (1.0f + cutoffFreq / sampleRate);
 
     // performing second low pass filtering on the tail of the pulse to shape the decay
-    for (int n = envLengthInSamples; n < totalLength; n++)
+    for (int n = envLengthInSamples; n < totalEnvLength; n++)
     {
         envelope[n] = 0;
         envelope[n] = alpha * envelope[n] + (1.0f - alpha) * v_envPrev;
         v_envPrev = envelope[n];
 
-        int index = 2 * envLengthInSamples - n + tailLength;
+        //int index = 2 * envLengthInSamples - n + tailLength;
+        int index = totalEnvLength - 1 - n + envLengthInSamples;
 
+        // assigned to location in v_env with mirroring trick
         v_env[index] = 0.05f + envAmp - envelope[n];
 
     }
@@ -94,14 +87,14 @@ void TriggerLogic::updateSampleRate(float _sampleRate)
 void TriggerLogic::setTriggerActive(float velocity)
 {
     // check if trigger is not already active, if it is then nothing happens. too quick!
-    if (envActive != true)
+    // note: checks the envelope active status, as this is the longer of the two
+    if (envActive == false)
     {
         // if trigger is not active, make it so
         pulseActive = true;
         envActive = true;
 
-
-        // update the common trigger signal amplitude (4-14V)
+        // update the common trigger signal amplitude (4-14V), dependent on velocity
         v_ct = 4.0f + (velocity * 10.0f);
     }
 }
@@ -116,7 +109,7 @@ float TriggerLogic::triggerProcess()
     }
     else if (pulseActive == true && pulseIndex >= pulseLengthInSamples)
     {
-        // reset index and turn active state to false
+        // trigger pulse is finished, reset index and turn active state to false
         pulseIndex = 0;
         pulseActive = false;
 
@@ -132,19 +125,22 @@ float TriggerLogic::triggerProcess()
 
 float TriggerLogic::envProcess()
 {
-    if (envActive && envIndex < envLengthInSamples)
+    if (envActive && envIndex < totalEnvLength)
     {
-        // currently active, increment index and return envelope amplitude for current index
+        // currently active, increment index
         envIndex++;
-        return v_env[envIndex-1];
+
+        // return envelope amplitude for current index from stored vector/wavetable
+        int currentIndex = envIndex - 1;
+        return v_env[currentIndex];
     }
-    else if (envActive && envIndex >= envLengthInSamples)
+    else if (envActive && envIndex >= totalEnvLength)
     {
         // reset index and turn active state to false
         envIndex = 0;
         envActive = false;
 
-        // return zero output
+        // envelope has reached the end so return zero output
         return 0.0f;
     }
     else
@@ -153,3 +149,4 @@ float TriggerLogic::envProcess()
         return 0.0f;
     }
 }
+

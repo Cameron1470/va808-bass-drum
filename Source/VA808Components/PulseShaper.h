@@ -2,16 +2,18 @@
   ==============================================================================
 
     "PulseShaper.h"
-    Roland TR-808 Virtual Analogue Modelling - MSc Project
-
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 24th June 2021
     Author:  Cameron Smith, UoE s1338237
 
-
     Class that represents the pulse shaper block of the VA model. a nonlinear
     low shelf filter that delivers a shaped pulse to the bridged-T network's op-
-    amp inverting input
+    amp inverting input. This is divided into two stages, a linearised low shelf
+    filter and a nonlinear approximation of the diodes effect
 
+    v_trig    ---|low shelf filter|--->    v_ps    ---|NL approx|--->    v_plus 
+       ^                                                                   ^
+     input                                                               output
   ==============================================================================
 */
 
@@ -31,18 +33,17 @@ public:
 
     @param sample rate in Hz
     */
-    void setSampleRate(float SR);
+    void setSampleRate(float sampleRate);
 
     //--------------------------------------------------------------------------
     /**
-    Get current sample of the pulse shaper process block
+    Get current sample of the pulse shaper process block, the voltage at the op-amp's non-inerting input
+
+    @param the input voltage to the process block (output of the trigger logic pulse)
     */
     float process(float v_trig);
 
 private:
-    /// sampling frequency in Hz
-    float sampleRate = 0.0f;
-
     /// value of capacitor C40 (15 nF)
     float c40 = 1.5e-8;                 
     

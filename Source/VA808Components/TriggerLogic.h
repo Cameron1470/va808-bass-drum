@@ -2,14 +2,14 @@
   ==============================================================================
 
     "TriggerLogic.h"
-    Roland TR-808 Virtual Analogue Modelling - MSc Project
-
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 24th June 2021
     Author:  Cameron Smith, UoE s1338237
 
-
     Class that represents the trigger logic block of the VA model. When a note
-    is played in the synthesiser class a 1ms square-shaped pulse is generated
+    is played in the synthesiser class a 1ms square-shaped pulse is generated.
+    Also manages the envelope generator in the block diagram by precomputing its
+    shape and storing in a vector for playback.
 
   ==============================================================================
 */
@@ -27,7 +27,7 @@ public:
     Updates sample rate and consequently the pulse length in samples
     @param sample rate in Hz
     */
-    void updateSampleRate(float SR);
+    void updateSampleRate(float sampleRate);
 
     //--------------------------------------------------------------------------
     /**
@@ -49,8 +49,6 @@ public:
     float envProcess();
 
 private:
-    /// sampling frequency in Hz
-    float sampleRate;
 
     //=================================================
     // PULSE VARIABLES
@@ -76,8 +74,11 @@ private:
     /// length of the envelope in seconds (fixed as 5ms)
     float envLengthInSeconds = 0.005f;
 
-    /// length of the envelope in samples (dependant on sample rate)
-    int envLengthInSamples;
+    /// length of the envelope decay in seconds (fixed as 1.25ms)
+    float envTailLengthInSeconds = 0.00125f;
+
+    /// total length of the envelope in samples, pulse + decay (dependant on sample rate)
+    int totalEnvLength;
 
     /// amplitude of the envelope, fixed value
     float envAmp = 12.406f;

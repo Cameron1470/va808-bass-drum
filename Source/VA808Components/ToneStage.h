@@ -1,5 +1,6 @@
 /*
   ==============================================================================
+    
     "ToneStage.h"
     Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 25th June 2021
@@ -27,19 +28,17 @@ public:
 
     @param sample rate in Hz
     */
-    void setSampleRate(float SR);
+    void setSampleRate(float sampleRate);
 
     //--------------------------------------------------------------------------
     /**
     Get current sample of the tone process block
+
+    @param the input voltage to the process block (output of the bridged-T network)
     */
     float process(float v_bt);
 
 private:
-
-    /// sampling frequency in Hz
-    float sampleRate = 0.0f;
-
     /// value of capacitor C45 (100 nF)
     float c45 = 1.0e-7;
 
@@ -53,7 +52,7 @@ private:
     float vr5 = 1.0e4;
 
     /// VR5 mod [0,1] -- TONE KNOB,  0=high cutoff | 1=low cutoff
-    float tone = 0.3f;
+    float tone = 0.2f;
 
     /// coefficients of the discretized transfer function for tone stage
     float A0 = 0.0f;

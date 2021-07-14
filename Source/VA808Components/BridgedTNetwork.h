@@ -32,11 +32,27 @@ public:
     */
     void setSampleRate(float SR);
 
+    //--------------------------------------------------------------------------
+    /**
+    Function for updating value of effective resistance,
 
+    @param voltage value at node, v_c, in the circuit diagram
+    */
     void updateEffectiveResistance(float v_c);
 
+    //--------------------------------------------------------------------------
+    /**
+    Function for updating coefficients of all the inputs to the network,
+
+    First recalculates the parallel resistive value using current effective resistance
+    Subsequently calls functions in all the input classes using the stored private variable r_eff
+    */
     void updateCoefficients();
 
+    //--------------------------------------------------------------------------
+    /**
+    Updates the past samples of the feedback buffer classes
+    */
     void updateFeedbackBuffer(float v_fb);
 
     //--------------------------------------------------------------------------
@@ -45,9 +61,20 @@ public:
     */
     float process(float v_plus, float v_rp);
 
+    //--------------------------------------------------------------------------
+    /**
+    Function for the op-amp clip, currently just a hard clip at the supplied voltage
+    */
     void opAmpClip();
 
-    void postprocessUpdate(float v_plus, float v_rp);
+
+    //--------------------------------------------------------------------------
+    /**
+    After the main processing for calculating the current sample has taken place, update the coefficients of the components
+
+    First update intermediate node coefficients, calculate v_c, update r_eff and then update the main coefficients
+    */
+    void postprocessUpdate(float v_plus, float v_fb, float v_rp);
 
 
 private:
@@ -75,16 +102,22 @@ private:
     /// value of resistor R170 (470 kOhms)
     float r170 = 4.7e5;
 
+    /// effective resistance of the r165 + r166 branch with nonlinear contributions from leakage
     float r_eff;
     
+    /// parallel combination, R161 || R_eff || R70
     float r_prl1;
 
+    /// parallel combination, R161 || R_eff
     float r_prl2;
 
+    /// parallel combination, R170 || R_eff
     float r_prl3;
 
+    /// voltage being provided to the bridged-T op-amp
     float B2 = 15.0f;
 
+    /// instantaneous output voltage of the bridged-T network, recalculated every process call
     float v_bt = 0.0f;
 
     HbtOne h_btOne;

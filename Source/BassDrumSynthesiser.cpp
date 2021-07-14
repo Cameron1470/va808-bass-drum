@@ -15,7 +15,7 @@
 
 void BassDrumSynthVoice::startNote(int midiNoteNumber, float velocity, juce::SynthesiserSound*, int /*currentPitchWheelPosition*/)
 {
-    triggerLogic.setTriggerActive(velocity);
+    triggerLogic.setTriggerActive(velocity);   
 }
 
 void BassDrumSynthVoice::stopNote(float /*velocity*/, bool allowTailOff)
@@ -48,7 +48,7 @@ void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, 
 
 
         //===========================================
-        //BRIDGED-T INPUT 2
+        //BRIDGED-T INPUT 3
         float v_env = triggerLogic.envProcess();
 
         float v_rp = retriggeringPulse.process(v_env);
@@ -60,7 +60,7 @@ void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, 
 
 
         //===========================================
-        //BRIDGED-T INPUT 3
+        //BRIDGED-T INPUT 2
         v_fb = feedbackBuffer.process(v_bt);
 
         bridgedTNetwork.updateFeedbackBuffer(v_fb);
@@ -78,8 +78,7 @@ void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, 
         //===========================================
         //FREQUENCY EFFECTS
 
-        bridgedTNetwork.updateFeedbackBuffer(v_fb);
-        bridgedTNetwork.postprocessUpdate(v_plus, v_rp);
+        bridgedTNetwork.postprocessUpdate(v_plus, v_fb, v_rp);
 
 
         //===========================================

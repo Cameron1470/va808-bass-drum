@@ -1,20 +1,19 @@
 /*
   ==============================================================================
 
-    LevelStage.cpp
-    Created: 25 Jun 2021 2:41:37pm
-    Author:  csmit
+    "LevelStage.h"
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
+    Created: 25th June 2021
+    Author:  Cameron Smith, UoE s1338237
 
+    ----------------------see header file for description-----------------------
   ==============================================================================
 */
 
 #include "LevelStage.h"
 
-void LevelStage::setSampleRate(float SR)
+void LevelStage::setSampleRate(float sampleRate)
 {
-    // set sample rate
-    sampleRate = SR;
-
     // constant used in bilinear transformation substitution
     float K = 2 * sampleRate;
 

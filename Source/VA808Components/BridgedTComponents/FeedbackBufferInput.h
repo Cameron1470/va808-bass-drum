@@ -6,6 +6,12 @@
     Created: 13th July 2021
     Author:  Cameron Smith, UoE s1338237
 
+    Class for managing the feedback buffer input to the bridged-T network.
+    Contains two classes:
+    1) Manages the calculation of the contributing voltage for the main output 
+       of the network, v_bt2
+    2) Manages the calculation of the voltage for the intermediate node, v_c2
+
   ==============================================================================
 */
 
@@ -100,25 +106,21 @@ public:
         A2 = (K * K * alpha2 - K * alpha1 + alpha0) / A0;
     }
 
-    float process()
+    float process(float v_fb)
     {
         // calculate next step from the difference equation
-        float v_c2 = B0 * v_fbPrev1 + B1 * v_fbPrev2 + B2 * v_fbPrev3 - A1 * v_c2Prev1 - A2 * v_c2Prev2;
+        float v_c2 = B0 * v_fb + B1 * v_fbPrev1 + B2 * v_fbPrev2 - A1 * v_c2Prev1 - A2 * v_c2Prev2;
 
         // update past sample variables for v_c2(n-1) and v_c2(n-2)
         v_c2Prev2 = v_c2Prev1;
         v_c2Prev1 = v_c2;
 
-        // return calculated value of current sample v_c2(n)
-        return v_c2;
-    }
-
-    void updatePastSamples(float v_fb)
-    {
-        // update past sample variables for v_fb(n-1), v_fb(n-2) and v_fb(n-3)
-        v_fbPrev3 = v_fbPrev2;
+        // update past sample variables for v_fb(n-1) and v_fb(n-2)
         v_fbPrev2 = v_fbPrev1;
         v_fbPrev1 = v_fb;
+
+        // return calculated value of current sample v_c2(n)
+        return v_c2;
     }
 
 private:
@@ -135,9 +137,6 @@ private:
 
     /// second previous sample of input, v_fb(n-2)
     float v_fbPrev2 = 0.0f;
-
-    /// second previous sample of input, v_fb(n-3)
-    float v_fbPrev3 = 0.0f;
 
     /// previous sample of output, v_c2(n-1)
     float v_c2Prev1 = 0.0f;

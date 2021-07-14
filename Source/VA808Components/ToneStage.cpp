@@ -15,13 +15,10 @@
 
 #include "ToneStage.h"
 
-void ToneStage::setSampleRate(float SR)
+void ToneStage::setSampleRate(float sampleRate)
 {
-    // set sample rate
-    sampleRate = SR;
-
     // constant used in bilinear transformation substitution
-    float K = 2 * sampleRate;
+    float K = 2.0f * sampleRate;
 
     // calculating the equivalent resistance of the network, R171 + (R172 || VR5) 
     float r_eq = r171 + r172 * vr5 * tone / (r172 + vr5 * tone);
