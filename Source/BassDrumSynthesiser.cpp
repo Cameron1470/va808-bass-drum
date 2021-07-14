@@ -61,7 +61,7 @@ void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, 
 
         //===========================================
         //BRIDGED-T INPUT 2
-        v_fb = feedbackBuffer.process(v_bt);
+        float v_fb = feedbackBuffer.process(v_bt);
 
         bridgedTNetwork.updateFeedbackBuffer(v_fb);
 
@@ -80,6 +80,7 @@ void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, 
 
         bridgedTNetwork.postprocessUpdate(v_plus, v_fb, v_rp);
 
+        //v_fbPrev1 = v_fb;
 
         //===========================================
         //WRITING OUTPUT TO BUFFER

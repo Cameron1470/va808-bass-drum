@@ -30,7 +30,7 @@ void BridgedTNetwork::updateEffectiveResistance(float v_c)
 
     if (v_c < -0.1f)
     {
-        r_eff = (v_c * r166 * (r165 + r166)) / (v_c * (r165 + 166) - r165 * (v_c - r166 * i_c));
+        r_eff = (v_c * r166 * (r165 + r166)) / (v_c * (r165 + r166) - r165 * (v_c - r166 * i_c));
     }
     else if (v_c < 0.2f)
     {

@@ -52,7 +52,7 @@ private:
     float vr5 = 1.0e4;
 
     /// VR5 mod [0,1] -- TONE KNOB,  0=high cutoff | 1=low cutoff
-    float tone = 0.2f;
+    float tone = 0.8f;
 
     /// coefficients of the discretized transfer function for tone stage
     float A0 = 0.0f;

@@ -141,6 +141,8 @@ private:
     float outputGain = 0.1;
 
     // stored value of v_fb, updated then used in the following sample calculation
-    float v_fb = 0.0f;
+    //loat v_fb = 0.0f;
+
+    //float v_fbPrev1 = 0.0f;
 
 };

@@ -109,15 +109,15 @@ public:
     float process(float v_fb)
     {
         // calculate next step from the difference equation
-        float v_c2 = B0 * v_fb + B1 * v_fbPrev1 + B2 * v_fbPrev2 - A1 * v_c2Prev1 - A2 * v_c2Prev2;
-
-        // update past sample variables for v_c2(n-1) and v_c2(n-2)
-        v_c2Prev2 = v_c2Prev1;
-        v_c2Prev1 = v_c2;
+        float v_c2 = (B0 * v_fb) + (B1 * v_fbPrev1) + (B2 * v_fbPrev2) - (A1 * v_c2Prev1) - (A2 * v_c2Prev2);
 
         // update past sample variables for v_fb(n-1) and v_fb(n-2)
         v_fbPrev2 = v_fbPrev1;
         v_fbPrev1 = v_fb;
+        
+        // update past sample variables for v_c2(n-1) and v_c2(n-2)
+        v_c2Prev2 = v_c2Prev1;
+        v_c2Prev1 = v_c2; 
 
         // return calculated value of current sample v_c2(n)
         return v_c2;
