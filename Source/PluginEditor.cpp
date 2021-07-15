@@ -37,7 +37,7 @@ void VA808BassDrumAudioProcessorEditor::paint (juce::Graphics& g)
 
     g.setColour (juce::Colours::white);
     g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+    g.drawFittedText ("TR808 Bass Drum - Virtual Analogue Model", getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void VA808BassDrumAudioProcessorEditor::resized()

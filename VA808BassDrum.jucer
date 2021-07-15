@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="kUFzkO" name="VA808BassDrum" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              pluginManufacturer="Cameron Smith">
   <MAINGROUP id="HBmwt3" name="VA808BassDrum">
     <GROUP id="{FF06041E-A874-535D-DEFC-43B3131A03DA}" name="Source">
       <FILE id="FizHCY" name="VA808BassDrum.cpp" compile="1" resource="0"
