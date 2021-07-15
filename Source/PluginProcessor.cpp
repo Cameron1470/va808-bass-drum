@@ -33,11 +33,11 @@ VA808BassDrumAudioProcessor::VA808BassDrumAudioProcessor()
     // add wavetable synth voices to the synthesiser class
     for (int i = 0; i < voiceCount; i++)
     {
-        bassDrumSynth.addVoice(new BassDrumSynthVoice());
+        drumSynth.addVoice(new DrumSynthVoice());
     }
 
     // add wavetable synth sound to the synthesiser class
-    bassDrumSynth.addSound(new BassDrumSynthSound());
+    drumSynth.addSound(new DrumSynthSound());
 }
 
 VA808BassDrumAudioProcessor::~VA808BassDrumAudioProcessor()
@@ -109,11 +109,11 @@ void VA808BassDrumAudioProcessor::changeProgramName (int index, const juce::Stri
 //==============================================================================
 void VA808BassDrumAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    bassDrumSynth.setCurrentPlaybackSampleRate(sampleRate);
+    drumSynth.setCurrentPlaybackSampleRate(sampleRate);
     
     for (int i = 0; i < voiceCount; i++)
     {
-        BassDrumSynthVoice* v = dynamic_cast<BassDrumSynthVoice*>(bassDrumSynth.getVoice(i));
+        DrumSynthVoice* v = dynamic_cast<DrumSynthVoice*>(drumSynth.getVoice(i));
 
         // providing the voices with essential information (sample rate)
         v->prepareToPlay(sampleRate);
@@ -156,7 +156,7 @@ void VA808BassDrumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
 {
     juce::ScopedNoDenormals noDenormals;
     
-    bassDrumSynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
+    drumSynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 
 }
 

@@ -16,7 +16,7 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "BassDrumSynthesiser.h"
+#include "DrumSynthesiser.h"
 
 //==============================================================================
 /**
@@ -63,7 +63,7 @@ public:
 
 private:
     /// Main instance of the synthesizer class
-    juce::Synthesiser bassDrumSynth;
+    juce::Synthesiser drumSynth;
 
     /// Number of voices the synthesizer has
     int voiceCount = 1;

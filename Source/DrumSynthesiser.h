@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    "BassDrumSynthesiser.h"
+    "DrumSynthesiser.h"
     Roland TR-808 Virtual Analogue Modelling - MSc Project
     
     Created: 24th June 2021
@@ -19,7 +19,7 @@
 // ===========================
 // ===========================
 // SOUND
-class BassDrumSynthSound : public juce::SynthesiserSound
+class DrumSynthSound : public juce::SynthesiserSound
 {
 public:
     bool appliesToNote      (int) override      { return true; }
@@ -42,10 +42,10 @@ public:
  @namespace none
  @updated 2019-06-18
  */
-class BassDrumSynthVoice : public juce::SynthesiserVoice
+class DrumSynthVoice : public juce::SynthesiserVoice
 {
 public:
-    BassDrumSynthVoice() {}
+    DrumSynthVoice() {}
     //--------------------------------------------------------------------------
     /**
      What should be done when a note starts
@@ -101,7 +101,7 @@ public:
      */
     bool canPlaySound (juce::SynthesiserSound* sound) override
     {
-        return dynamic_cast<BassDrumSynthSound*> (sound) != nullptr;
+        return dynamic_cast<DrumSynthSound*> (sound) != nullptr;
     }
     //--------------------------------------------------------------------------
 private:

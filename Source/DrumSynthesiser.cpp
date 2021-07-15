@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    "BassDrumSynthesiser.cpp"
+    "DrumSynthesiser.cpp"
     Roland TR-808 Virtual Analogue Modelling - MSc Project
 
     Created: 24th June 2021
@@ -11,26 +11,26 @@
   ==============================================================================
 */
 
-#include "BassDrumSynthesiser.h"
+#include "DrumSynthesiser.h"
 
 
-void BassDrumSynthVoice::startNote(int midiNoteNumber, float velocity, juce::SynthesiserSound*, int /*currentPitchWheelPosition*/)
+void DrumSynthVoice::startNote(int midiNoteNumber, float velocity, juce::SynthesiserSound*, int /*currentPitchWheelPosition*/)
 {
 
     bassDrum.activate(velocity);
 }
 
-void BassDrumSynthVoice::stopNote(float /*velocity*/, bool allowTailOff)
+void DrumSynthVoice::stopNote(float /*velocity*/, bool allowTailOff)
 {
 
 }
 
-void BassDrumSynthVoice::prepareToPlay(double sampleRate)
+void DrumSynthVoice::prepareToPlay(double sampleRate)
 {
     bassDrum.setSampleRate(sampleRate);
 }
 
-void BassDrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, int startSample, int numSamples)
+void DrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, int startSample, int numSamples)
 {
     // iterate through the necessary number of samples (from startSample up to startSample + numSamples)
     for (int sampleIndex = startSample; sampleIndex < (startSample + numSamples); sampleIndex++)
