@@ -13,14 +13,8 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "VA808Components/TriggerLogic.h"
-#include "VA808Components/PulseShaper.h"
-#include "VA808Components/RetriggeringPulse.h"
-#include "VA808Components/BridgedTNetwork.h"
-#include "VA808Components/FeedbackBuffer.h"
-#include "VA808Components/ToneStage.h"
-#include "VA808Components/LevelStage.h"
-#include "VA808Components/OutputStage.h"
+#include "VA808BassDrum.h"
+
 
 // ===========================
 // ===========================
@@ -113,36 +107,9 @@ public:
 private:
     //--------------------------------------------------------------------------
 
-    /// Instance of the TriggerLogic class for the trigger logic process block
-    TriggerLogic triggerLogic;
-
-    /// Instance of the PulseShaper class for the pulse shaper process block
-    PulseShaper pulseShaper;
-
-    /// Instance of the RetriggeringPulse class for the retriggering pulse process block
-    RetriggeringPulse retriggeringPulse;
-
-    /// Instance of the PulseShaper class for the bridged-T network process block
-    BridgedTNetwork bridgedTNetwork;
-
-    /// Instance of the FeedbackBuffer class for the feedback buffer process block
-    FeedbackBuffer feedbackBuffer;
-
-    /// Instance of the ToneStage class for the tone stage process block
-    ToneStage toneStage;
-
-    /// Instance of the LevelStage class for the level stage process block
-    LevelStage levelStage;
-
-    /// Instance of the OutputStage class for the output stage process block
-    OutputStage outputStage;
+    VA808BassDrum bassDrum;
 
     /// adjustable gain value for the output level
     float outputGain = 0.1;
-
-    // stored value of v_fb, updated then used in the following sample calculation
-    //loat v_fb = 0.0f;
-
-    //float v_fbPrev1 = 0.0f;
 
 };
