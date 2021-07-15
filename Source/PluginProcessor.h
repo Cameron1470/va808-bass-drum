@@ -2,11 +2,9 @@
   ==============================================================================
 
     "PluginProcessor.h"
-    Roland TR-808 Virtual Analogue Modelling - MSc Project
-    
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 24th June 2021
     Author:  Cameron Smith, UoE s1338237
-
 
     This file contains the basic framework code for a JUCE plugin processor.
 

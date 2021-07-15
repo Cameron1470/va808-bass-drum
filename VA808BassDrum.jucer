@@ -7,10 +7,10 @@
       <FILE id="FizHCY" name="VA808BassDrum.cpp" compile="1" resource="0"
             file="Source/VA808BassDrum.cpp"/>
       <FILE id="dalEC3" name="VA808BassDrum.h" compile="0" resource="0" file="Source/VA808BassDrum.h"/>
-      <FILE id="vrOmg2" name="BassDrumSynthesiser.h" compile="0" resource="0"
-            file="Source/BassDrumSynthesiser.h"/>
-      <FILE id="vzZu64" name="BassDrumSynthesiser.cpp" compile="1" resource="0"
-            file="Source/BassDrumSynthesiser.cpp"/>
+      <FILE id="TFzeKl" name="DrumSynthesiser.h" compile="0" resource="0"
+            file="Source/DrumSynthesiser.h"/>
+      <FILE id="Dif4Ux" name="DrumSynthesiser.cpp" compile="1" resource="0"
+            file="Source/DrumSynthesiser.cpp"/>
       <FILE id="U7SocX" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="cqaLq0" name="PluginProcessor.h" compile="0" resource="0"
