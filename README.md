@@ -1,5 +1,7 @@
 # va808-bass-drum
 
+![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Roland_TR-808_%28large%29.jpg/1920px-Roland_TR-808_%28large%29.jpg)
+
 ## Roland TR-808 Bass Drum - Virtual Analogue Modelling
 ## Cameron Smith, s1338237
 ### MSc Acoustics & Music Technology - Summer Project
