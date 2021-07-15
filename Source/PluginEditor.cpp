@@ -22,7 +22,9 @@ VA808BassDrumAudioProcessorEditor::VA808BassDrumAudioProcessorEditor (VA808BassD
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    setSize (327, 400);
+
+    addAndMakeVisible(background);
 }
 
 VA808BassDrumAudioProcessorEditor::~VA808BassDrumAudioProcessorEditor()
@@ -32,16 +34,14 @@ VA808BassDrumAudioProcessorEditor::~VA808BassDrumAudioProcessorEditor()
 //==============================================================================
 void VA808BassDrumAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+    
 
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("TR808 Bass Drum - Virtual Analogue Model", getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void VA808BassDrumAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+
+    background.setBounds(0, 0, 327, 400);
 }

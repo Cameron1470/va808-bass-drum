@@ -94,8 +94,8 @@ void TriggerLogic::setTriggerActive(float velocity)
         pulseActive = true;
         envActive = true;
 
-        // update the common trigger signal amplitude (4-7V), dependent on velocity
-        v_ct = 4.0f + (velocity * 3.0f);
+        // update the common trigger signal amplitude (4-5V), dependent on velocity
+        v_ct = 4.0f + (velocity * 1.0f);
     }
 }
 

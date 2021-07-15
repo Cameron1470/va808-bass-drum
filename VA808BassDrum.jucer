@@ -5,20 +5,20 @@
               pluginManufacturer="Cameron Smith">
   <MAINGROUP id="HBmwt3" name="VA808BassDrum">
     <GROUP id="{FF06041E-A874-535D-DEFC-43B3131A03DA}" name="Source">
-      <FILE id="FizHCY" name="VA808BassDrum.cpp" compile="1" resource="0"
-            file="Source/VA808BassDrum.cpp"/>
-      <FILE id="dalEC3" name="VA808BassDrum.h" compile="0" resource="0" file="Source/VA808BassDrum.h"/>
+      <FILE id="cqaLq0" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="U7SocX" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="YVqaxp" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="FgrGOm" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
       <FILE id="TFzeKl" name="DrumSynthesiser.h" compile="0" resource="0"
             file="Source/DrumSynthesiser.h"/>
       <FILE id="Dif4Ux" name="DrumSynthesiser.cpp" compile="1" resource="0"
             file="Source/DrumSynthesiser.cpp"/>
-      <FILE id="U7SocX" name="PluginProcessor.cpp" compile="1" resource="0"
-            file="Source/PluginProcessor.cpp"/>
-      <FILE id="cqaLq0" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
-      <FILE id="FgrGOm" name="PluginEditor.cpp" compile="1" resource="0"
-            file="Source/PluginEditor.cpp"/>
-      <FILE id="YVqaxp" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="dalEC3" name="VA808BassDrum.h" compile="0" resource="0" file="Source/VA808BassDrum.h"/>
+      <FILE id="FizHCY" name="VA808BassDrum.cpp" compile="1" resource="0"
+            file="Source/VA808BassDrum.cpp"/>
       <GROUP id="{9F128DD3-320A-1302-3462-3FB9774C164E}" name="VA808Components">
         <GROUP id="{278F5AD6-F448-2065-0648-1795141D9723}" name="BridgedTComponents">
           <FILE id="Lj8S2i" name="FeedbackBufferInput.h" compile="0" resource="0"
@@ -51,6 +51,10 @@
         <FILE id="E2QLCz" name="TriggerLogic.cpp" compile="1" resource="0"
               file="Source/VA808Components/TriggerLogic.cpp"/>
         <FILE id="IeZw9M" name="TriggerLogic.h" compile="0" resource="0" file="Source/VA808Components/TriggerLogic.h"/>
+      </GROUP>
+      <GROUP id="{5624D264-1250-D9C3-9ED6-F6E9561104FC}" name="GUIComponents">
+        <FILE id="c1xxHu" name="Background.h" compile="0" resource="0" file="Source/GUIComponents/Background.h"/>
+        <FILE id="etm7Be" name="Background.cpp" compile="1" resource="0" file="Source/GUIComponents/Background.cpp"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>

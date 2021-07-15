@@ -154,6 +154,8 @@ void VA808BassDrumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
 {
     juce::ScopedNoDenormals noDenormals;
     
+    buffer.clear();
+
     drumSynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 
 }

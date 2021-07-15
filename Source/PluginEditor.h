@@ -17,6 +17,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "GUIComponents/Background.h"
 
 //==============================================================================
 /**
@@ -36,5 +37,9 @@ private:
     // access the processor object that created it.
     VA808BassDrumAudioProcessor& audioProcessor;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VA808BassDrumAudioProcessorEditor)
+
+    Background background;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(VA808BassDrumAudioProcessorEditor)
+
 };
