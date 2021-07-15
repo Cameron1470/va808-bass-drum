@@ -50,7 +50,7 @@ private:
     float vr6 = 5.0e5;
 
     /// VR6 mod [0,1] -- DECAY KNOB, 0=short decay | 1=long decay
-    float decay = 0.9f;
+    float decay = 0.5f;
 
     /// voltage from rail being supplied to op-amps
     float B2 = 15.0f;
