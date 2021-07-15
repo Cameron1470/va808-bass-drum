@@ -18,6 +18,7 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "GUIComponents/Background.h"
+#include "GUIComponents/CustomDial.h"
 
 //==============================================================================
 /**
@@ -39,6 +40,12 @@ private:
 
 
     Background background;
+
+    CustomDial level;
+
+    CustomDial tone;
+
+    CustomDial decay;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(VA808BassDrumAudioProcessorEditor)
 

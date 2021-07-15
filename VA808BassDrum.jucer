@@ -53,6 +53,8 @@
         <FILE id="IeZw9M" name="TriggerLogic.h" compile="0" resource="0" file="Source/VA808Components/TriggerLogic.h"/>
       </GROUP>
       <GROUP id="{5624D264-1250-D9C3-9ED6-F6E9561104FC}" name="GUIComponents">
+        <FILE id="aHfQ31" name="CustomDial.cpp" compile="1" resource="0" file="Source/GUIComponents/CustomDial.cpp"/>
+        <FILE id="yogqEC" name="CustomDial.h" compile="0" resource="0" file="Source/GUIComponents/CustomDial.h"/>
         <FILE id="c1xxHu" name="Background.h" compile="0" resource="0" file="Source/GUIComponents/Background.h"/>
         <FILE id="etm7Be" name="Background.cpp" compile="1" resource="0" file="Source/GUIComponents/Background.cpp"/>
       </GROUP>
