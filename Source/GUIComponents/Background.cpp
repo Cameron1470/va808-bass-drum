@@ -1,10 +1,12 @@
 /*
   ==============================================================================
 
-    Background.cpp
-    Created: 15 Jul 2021 2:16:00pm
-    Author:  csmit
+    "Background.cpp"
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
+    Created: 15th July 2021
+    Author:  Cameron Smith, UoE s1338237
 
+    ----------------------see header file for description-----------------------
   ==============================================================================
 */
 
@@ -14,22 +16,7 @@
 //==============================================================================
 Background::Background()
 {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
-
-    addAndMakeVisible(B);
-    B.setFont(bigFont);
-    B.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
-    addAndMakeVisible(ass);
-    ass.setFont(smallFont);
-    ass.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
-    addAndMakeVisible(D);
-    D.setFont(bigFont);
-    D.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
-    addAndMakeVisible(rum);
-    rum.setFont(smallFont);
-    rum.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
-
+    // adding some titles with name and authorship to the window
     addAndMakeVisible(labelOne);
     labelOne.setFont(juce::Font(35.0f));
     labelOne.setColour(juce::Label::textColourId, juce::Colour(156, 53, 34));
@@ -43,6 +30,20 @@ Background::Background()
     labelAuthor.setColour(juce::Label::textColourId, juce::Colour(226, 195, 79));
     labelAuthor.setJustificationType(juce::Justification::right);
 
+    // adding text for the "Bass Drum" label in a way that mimics the styling on the original unit
+    addAndMakeVisible(B);
+    B.setFont(bigFont);
+    B.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
+    addAndMakeVisible(ass);
+    ass.setFont(smallFont);
+    ass.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
+    addAndMakeVisible(D);
+    D.setFont(bigFont);
+    D.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
+    addAndMakeVisible(rum);
+    rum.setFont(smallFont);
+    rum.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
+
 }
 
 Background::~Background()
@@ -53,26 +54,29 @@ void Background::paint (juce::Graphics& g)
 {
 
     // Filling background of window with a dark grey colour and a gradient in the top right corner
-
     juce::ColourGradient blackGrad{ juce::Colour(23, 22, 28), 200.0f, 70.0f, juce::Colour(43, 42, 48), 210.0f, 0.0f, false };
     juce::Rectangle<int> backgroundRect{ 0, 0, 327, 400 };
     g.setGradientFill(blackGrad);
     g.fillRect(backgroundRect);
 
+    // adding two vertical lines surrounding the bass drum dials
     juce::Rectangle<int> leftLine{ 7, 7, 3, 350 };
     juce::Rectangle<int> rightLine{ 110, 7, 3, 350 };
-
     g.setColour(juce::Colour(126, 131, 127));
     g.drawRect(leftLine);
     g.fillRect(leftLine);
     g.drawRect(rightLine);
     g.fillRect(rightLine);
 
+    // adding the background box to the "bass drum" label
     float cornerSize = 5.5f;
-
     g.setColour(juce::Colour(229, 216, 181));
     juce::Rectangle<float> labelBox{ 15, 325, 90, 32 };
     g.fillRoundedRectangle(labelBox, cornerSize);
+
+    //===================================================================
+    // this next section is adding the stylized boxes at the bottom of the window
+    // purely cosmetic, to capture the feel of the unit
 
     cornerSize = 1.5f;
 
@@ -120,18 +124,20 @@ void Background::paint (juce::Graphics& g)
     g.fillRoundedRectangle(whiteThree, cornerSize);
     g.fillRoundedRectangle(whiteFour, cornerSize);
 
+    //===================================================================
+
 }
 
 void Background::resized()
 {
-    B.setBounds(17, 325, 90, 32);
-    ass.setBounds(30, 328, 90, 32);
-    D.setBounds(54, 325, 90, 32);
-    rum.setBounds(69, 328, 90, 32);
-
+    // setting locations of the title labels
     labelOne.setBounds(124, 7, 196, 60);
     labelTwo.setBounds(124, 40, 196, 50);
     labelAuthor.setBounds(124, 78, 196, 20);
 
-
+    // setting lcoations of bass drum label elements
+    B.setBounds(17, 325, 90, 32);
+    ass.setBounds(30, 328, 90, 32);
+    D.setBounds(54, 325, 90, 32);
+    rum.setBounds(69, 328, 90, 32);
 }

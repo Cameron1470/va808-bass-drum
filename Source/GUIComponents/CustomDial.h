@@ -1,10 +1,14 @@
 /*
   ==============================================================================
 
-    CustomDial.h
-    Created: 15 Jul 2021 5:00:07pm
-    Author:  csmit
+    "CustomDial.h"
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
+    Created: 15th July 2021
+    Author:  Cameron Smith, UoE s1338237
 
+    A custom dial, component class that mimics the style of the knobs on the 
+    TR-808. Can be initialized with different names and colours to avoid
+    repetition of code
   ==============================================================================
 */
 

@@ -2,11 +2,9 @@
   ==============================================================================
 
     "PluginEditor.h"
-    Roland TR-808 Virtual Analogue Modelling - MSc Project
-    
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 24th June 2021
     Author:  Cameron Smith, UoE s1338237
-    
 
     This file contains the basic framework code for a JUCE plugin editor.
 
@@ -38,13 +36,16 @@ private:
     // access the processor object that created it.
     VA808BassDrumAudioProcessor& audioProcessor;
 
-
+    // creating instance of background class which contains all static visual elements
     Background background;
 
+    // a dial for controlling the bass drum level parameter
     CustomDial level;
 
+    // a dial for controlling the bass drum tone parameter
     CustomDial tone;
 
+    // a dial for controlling the bass drum decay parameter
     CustomDial decay;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(VA808BassDrumAudioProcessorEditor)

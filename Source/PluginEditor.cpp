@@ -2,11 +2,9 @@
   ==============================================================================
 
     "PluginEditor.cpp"
-    Roland TR-808 Virtual Analogue Modelling - MSc Project
-    
+    Part of: Roland TR-808 Virtual Analogue Modelling - MSc Project
     Created: 24th June 2021
     Author:  Cameron Smith, UoE s1338237
-    
     
     This file contains the basic framework code for a JUCE plugin editor.
 
@@ -23,10 +21,10 @@ VA808BassDrumAudioProcessorEditor::VA808BassDrumAudioProcessorEditor (VA808BassD
     tone("TONE", juce::Colour(245, 243, 252)),
     decay("DECAY", juce::Colour(245, 243, 252))
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
+    // set fixed window size
     setSize (327, 400);
 
+    // adding the component class instances to the window
     addAndMakeVisible(background);
     addAndMakeVisible(level);
     addAndMakeVisible(tone);
@@ -46,9 +44,8 @@ void VA808BassDrumAudioProcessorEditor::paint (juce::Graphics& g)
 
 void VA808BassDrumAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
-
+    
+    // setting location of component class instances, first the background then 3 custom dials
     background.setBounds(0, 0, 327, 400);
     level.setBounds(10, 7, 100, 105);
     tone.setBounds(10, 112, 100, 105);
