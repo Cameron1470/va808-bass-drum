@@ -104,6 +104,9 @@ public:
         return dynamic_cast<DrumSynthSound*> (sound) != nullptr;
     }
     //--------------------------------------------------------------------------
+
+    void updateDrumParams(const float level, const float tone, const float decay);
+
 private:
     //--------------------------------------------------------------------------
 

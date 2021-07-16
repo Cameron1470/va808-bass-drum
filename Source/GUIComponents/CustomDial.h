@@ -84,19 +84,26 @@ private:
 class CustomDial  : public juce::Component
 {
 public:
-    CustomDial(juce::String dialName, juce::Colour dialColour);
+    CustomDial(juce::String dialName, juce::Colour dialColour, juce::AudioProcessorValueTreeState& parameters, juce::String paramID);
     ~CustomDial() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
 
-private:
+    using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
+    using SliderStyle = juce::Slider::SliderStyle;
 
+private:
+    // dial component
     juce::Slider dial;
 
+    // custom visual look, defined in the class above
     CustomLookAndFeel customLook;
 
+    // label for describing the purpose of the dial
     juce::Label label;
+
+    std::unique_ptr<SliderAttachment> attachment;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomDial)
 };

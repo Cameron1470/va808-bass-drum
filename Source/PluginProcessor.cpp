@@ -24,7 +24,8 @@ VA808BassDrumAudioProcessor::VA808BassDrumAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
+    parameters(*this, nullptr, "Parameters", createParams())
 #endif
 {
     //==========================================================================
@@ -156,6 +157,8 @@ void VA808BassDrumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
     
     buffer.clear();
 
+    setParams();
+
     drumSynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 
 }
@@ -190,4 +193,33 @@ void VA808BassDrumAudioProcessor::setStateInformation (const void* data, int siz
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new VA808BassDrumAudioProcessor();
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout VA808BassDrumAudioProcessor::createParams()
+{
+    std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
+
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("LEVEL", "Level", juce::NormalisableRange<float> {0.0f, 1.0f, 0.02f}, 0.5f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("TONE", "Tone", juce::NormalisableRange<float> {0.0f, 1.0f, 0.02f}, 0.8f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("DECAY", "Decay", juce::NormalisableRange<float> {0.0f, 1.0f, 0.02f}, 0.5f));
+
+    return { params.begin(), params.end() };
+}
+
+void VA808BassDrumAudioProcessor::setParams()
+{
+    auto& level = *parameters.getRawParameterValue("LEVEL");
+    auto& tone = *parameters.getRawParameterValue("TONE");
+    auto& decay = *parameters.getRawParameterValue("DECAY");
+    
+    for (int i = 0; i < drumSynth.getNumVoices(); i++)
+    {
+        if (auto voice = dynamic_cast<DrumSynthVoice*>(drumSynth.getVoice(i)))
+        {
+            
+
+            voice->updateDrumParams(level, tone, decay);
+        }
+
+    }
 }

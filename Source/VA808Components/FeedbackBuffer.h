@@ -36,7 +36,12 @@ public:
     */
     float process(float v_bt);
 
+    void updateCoefficients(float _decay);
+
 private:
+    
+    float K;
+    
     /// value of capacitor C43 (33 microF)
     float c43 = 3.3e-5;
     

@@ -15,17 +15,9 @@
 void LevelStage::setSampleRate(float sampleRate)
 {
     // constant used in bilinear transformation substitution
-    float K = 2 * sampleRate;
+    K = 2.0f * sampleRate;
 
-    // calculating coefficients of continuous-time transfer function of the tone stage
-    float beta1 = vr4 * (1 - level) * c47;
-    float alpha1 = vr4 * c47;
-
-    // calculating discretized coefficients for tone stage
-    A0 = K * alpha1 + 1;
-    B0 = (K* beta1) / A0;
-    B1 = (-K * beta1) / A0;
-    A1 = (1.0f - K * alpha1) / A0;
+    updateCoefficients(0.4f);
 }
 
 float LevelStage::process(float v_to)
@@ -39,4 +31,19 @@ float LevelStage::process(float v_to)
 
     return v_lev;
 
+}
+
+void LevelStage::updateCoefficients(float _level)
+{
+    level = _level;
+
+    // calculating coefficients of continuous-time transfer function of the tone stage
+    float beta1 = vr4 * level * c47;
+    float alpha1 = vr4 * c47;
+
+    // calculating discretized coefficients for tone stage
+    A0 = K * alpha1 + 1;
+    B0 = (K * beta1) / A0;
+    B1 = (-K * beta1) / A0;
+    A1 = (1.0f - K * alpha1) / A0;
 }

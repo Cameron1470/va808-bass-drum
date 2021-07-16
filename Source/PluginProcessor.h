@@ -59,9 +59,14 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    juce::AudioProcessorValueTreeState parameters;
+
 private:
     /// Main instance of the synthesizer class
     juce::Synthesiser drumSynth;
+
+    juce::AudioProcessorValueTreeState::ParameterLayout createParams();
+    void setParams();
 
     /// Number of voices the synthesizer has
     int voiceCount = 1;

@@ -17,9 +17,9 @@
 //==============================================================================
 VA808BassDrumAudioProcessorEditor::VA808BassDrumAudioProcessorEditor (VA808BassDrumAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p),
-    level("LEVEL", juce::Colour(245, 213, 82)),
-    tone("TONE", juce::Colour(245, 243, 252)),
-    decay("DECAY", juce::Colour(245, 243, 252))
+    level("LEVEL", juce::Colour(245, 213, 82), audioProcessor.parameters, "LEVEL"),
+    tone("TONE", juce::Colour(245, 243, 252), audioProcessor.parameters, "TONE"),
+    decay("DECAY", juce::Colour(245, 243, 252), audioProcessor.parameters, "DECAY")
 {
     // set fixed window size
     setSize (327, 400);
@@ -27,6 +27,8 @@ VA808BassDrumAudioProcessorEditor::VA808BassDrumAudioProcessorEditor (VA808BassD
     // adding the component class instances to the window
     addAndMakeVisible(background);
     addAndMakeVisible(level);
+
+
     addAndMakeVisible(tone);
     addAndMakeVisible(decay);
 }

@@ -14,13 +14,14 @@
 #include "CustomDial.h"
 
 //==============================================================================
-CustomDial::CustomDial(juce::String dialName, juce::Colour dialColour)
+CustomDial::CustomDial(juce::String dialName, juce::Colour dialColour, juce::AudioProcessorValueTreeState& parameters, juce::String paramID)
 {
     // setting size of the total dial component
     setSize(100, 105);
 
-    // adding the dial itself
+    // adding the dial itself and setting range from 0 to 1
     addAndMakeVisible(dial);
+    dial.setRange(0.0f, 1.0f);
 
     //setting the style as a rotary dial (with horizontal or vertical drag) and removing text box
     dial.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
@@ -32,6 +33,9 @@ CustomDial::CustomDial(juce::String dialName, juce::Colour dialColour)
     // applying the custom look to the dial
     dial.setLookAndFeel(&customLook);
 
+    // adding attachment to the dial
+    attachment = std::make_unique<SliderAttachment>(parameters, paramID, dial);
+   
     // using the string that given to the class instance for the label text 
     label.setText(dialName, juce::NotificationType::dontSendNotification);
 
@@ -60,3 +64,5 @@ void CustomDial::resized()
     label.setBounds(10, 10, 80, 15);
 
 }
+
+

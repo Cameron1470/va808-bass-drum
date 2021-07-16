@@ -27,11 +27,39 @@
 class VA808BassDrum
 {
 public:
+    /**
+     Gives all the bass drum components the sample rate and subsequently sets them up ready for use
+
+     Must be called in the prepare to play function, before audio processing begins
+
+     @param sampling frequency in Hz
+     */
     void setSampleRate(float sampleRate);
     
+    /**
+     The playback trigger for the bass drum
+
+     Should be called when a note is pressed and the velocity defines the level of accent
+
+     @param the velocity of the note press
+     */
     void activate(float velocity);
 
+    /**
+     Get next sample from the bass drum model
+
+     Should be called in the process loop per sample
+     */
     float process();
+
+    /**
+     Function for update the private variables that control the parameters of the bass drum
+
+     @param level parameter between 0 and 1
+     @param tone parameter between 0 and 1
+     @param decay parameter between 0 and 1
+     */
+    void updateParams(float _level, float _tone, float _decay);
 
 private:
     /// Instance of the TriggerLogic class for the trigger logic process block
@@ -57,4 +85,14 @@ private:
 
     /// Instance of the OutputStage class for the output stage process block
     OutputStage outputStage;
+
+
+    /// Current value of level parameter, updated from the GUI
+    float level;
+
+    /// Current value of tone parameter, updated from the GUI
+    float tone;
+
+    /// Current value of decay parameter, updated from the GUI
+    float decay;
 };

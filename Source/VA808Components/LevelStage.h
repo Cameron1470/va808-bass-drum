@@ -35,7 +35,12 @@ public:
     */
     float process(float v_to);
 
+
+    void updateCoefficients(float _level);
+
 private:
+    float K;
+    
     /// value of capacitor C47 (0.47 microF)
     float c47 = 4.7e-7;
 

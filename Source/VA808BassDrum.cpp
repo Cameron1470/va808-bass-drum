@@ -76,3 +76,25 @@ float VA808BassDrum::process()
 
     return v_out;
 }
+
+void VA808BassDrum::updateParams(float _level, float _tone, float _decay)
+{
+    if (level != _level)
+    {
+        level = _level;
+        levelStage.updateCoefficients(level);   
+    }
+
+    if (tone != _tone)
+    {
+        tone = _tone;
+        toneStage.updateCoefficients(tone);
+    }
+    
+    if (decay != _decay)
+    {
+        decay = _decay;
+        feedbackBuffer.updateCoefficients(decay);
+    }
+
+}

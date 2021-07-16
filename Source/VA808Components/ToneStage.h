@@ -38,7 +38,11 @@ public:
     */
     float process(float v_bt);
 
+    void updateCoefficients(float _tone);
+
 private:
+    float K;
+    
     /// value of capacitor C45 (100 nF)
     float c45 = 1.0e-7;
 

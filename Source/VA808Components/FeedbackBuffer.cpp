@@ -15,19 +15,9 @@
 void FeedbackBuffer::setSampleRate(float sampleRate)
 {
     // constant used in bilinear transformation substitution
-    float K = 2.0f * sampleRate;
+    K = 2.0f * sampleRate;
 
-    // calculating coefficients of continuous-time transfer function of the feedback buffer stage
-    float beta1 = -r169 * vr6 * decay * c43;
-    float beta0 = -r169;
-    float alpha1 = r164 * (r169 + vr6 * decay) * c43;
-    float alpha0 = r164;
-
-    // calculating discretized coefficients for feedback buffer
-    A0 = K * alpha1 + alpha0;
-    B0 = (K * beta1 + beta0) / A0;
-    B1 = (beta0 - K * beta1) / A0;
-    A1 = (alpha0 - K * alpha1) / A0;
+    updateCoefficients(decay);
 }
 
 float FeedbackBuffer::process(float v_bt)
@@ -47,4 +37,21 @@ float FeedbackBuffer::process(float v_bt)
 
     return v_fb;
     
+}
+
+void FeedbackBuffer::updateCoefficients(float _decay)
+{
+    decay = _decay;
+    
+    // calculating coefficients of continuous-time transfer function of the feedback buffer stage
+    float beta1 = -r169 * vr6 * decay * c43;
+    float beta0 = -r169;
+    float alpha1 = r164 * (r169 + vr6 * decay) * c43;
+    float alpha0 = r164;
+
+    // calculating discretized coefficients for feedback buffer
+    A0 = K * alpha1 + alpha0;
+    B0 = (K * beta1 + beta0) / A0;
+    B1 = (beta0 - K * beta1) / A0;
+    A1 = (alpha0 - K * alpha1) / A0;
 }

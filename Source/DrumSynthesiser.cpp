@@ -52,3 +52,8 @@ void DrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, int 
         
     }
 }
+
+void DrumSynthVoice::updateDrumParams(const float level, const float tone, const float decay)
+{
+    bassDrum.updateParams(level, tone, decay);
+}
