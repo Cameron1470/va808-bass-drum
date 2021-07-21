@@ -27,8 +27,6 @@ VA808BassDrumAudioProcessorEditor::VA808BassDrumAudioProcessorEditor (VA808BassD
     // adding the component class instances to the window
     addAndMakeVisible(background);
     addAndMakeVisible(level);
-
-
     addAndMakeVisible(tone);
     addAndMakeVisible(decay);
 }

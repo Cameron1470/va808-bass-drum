@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="kUFzkO" name="VA808BassDrum" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              pluginManufacturer="Cameron Smith">
+              pluginManufacturer="Cameron Smith" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="HBmwt3" name="VA808BassDrum">
     <GROUP id="{FF06041E-A874-535D-DEFC-43B3131A03DA}" name="Source">
       <FILE id="cqaLq0" name="PluginProcessor.h" compile="0" resource="0"
