@@ -77,6 +77,8 @@ public:
     void postprocessUpdate(float v_plus, float v_fb, float v_rp);
 
 
+    void updateTuning(float tuningParam);
+
 private:
     /// constant used in bilinear transformation
     float K = 0.0f;

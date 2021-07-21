@@ -19,6 +19,8 @@
       <FILE id="dalEC3" name="VA808BassDrum.h" compile="0" resource="0" file="Source/VA808BassDrum.h"/>
       <FILE id="FizHCY" name="VA808BassDrum.cpp" compile="1" resource="0"
             file="Source/VA808BassDrum.cpp"/>
+      <FILE id="m6bl2Z" name="Overdrive.h" compile="0" resource="0" file="Source/Overdrive.h"/>
+      <FILE id="RRl00z" name="Overdrive.cpp" compile="1" resource="0" file="Source/Overdrive.cpp"/>
       <GROUP id="{9F128DD3-320A-1302-3462-3FB9774C164E}" name="VA808Components">
         <GROUP id="{278F5AD6-F448-2065-0648-1795141D9723}" name="BridgedTComponents">
           <FILE id="Lj8S2i" name="FeedbackBufferInput.h" compile="0" resource="0"
@@ -58,11 +60,12 @@
         <FILE id="c1xxHu" name="Background.h" compile="0" resource="0" file="Source/GUIComponents/Background.h"/>
         <FILE id="etm7Be" name="Background.cpp" compile="1" resource="0" file="Source/GUIComponents/Background.cpp"/>
       </GROUP>
+      <FILE id="Qu4V3t" name="icon.PNG" compile="0" resource="1" file="Source/icon.PNG"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>
-    <VS2019 targetFolder="Builds/VisualStudio2019">
+    <VS2019 targetFolder="Builds/VisualStudio2019" smallIcon="Qu4V3t" bigIcon="Qu4V3t">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" targetName="VA808BassDrum"/>
         <CONFIGURATION isDebug="0" name="Release" targetName="VA808BassDrum"/>

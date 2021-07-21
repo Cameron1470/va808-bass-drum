@@ -37,8 +37,13 @@ float ToneStage::process(float v_bt)
 
 void ToneStage::updateCoefficients(float _tone)
 {
-    //update tone
-    tone = _tone;
+
+    // logarithmic mapping to mirror to logarithmic potentiometer in the TR-808 tone knob
+    float y_m = 0.9f;
+    float b = powf(1.0f / y_m - 1.0f, 2);
+    float a = 1.0f / (b - 1.0f);
+
+    tone = a * powf(b, _tone) - a;
 
     // calculating the equivalent resistance of the network, R171 + (R172 || VR5) 
     float r_eq = r171 + r172 * vr5 * (1.0f - tone) / (r172 + vr5 * (1.0f - tone));

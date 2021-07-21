@@ -28,6 +28,7 @@ void DrumSynthVoice::stopNote(float /*velocity*/, bool allowTailOff)
 void DrumSynthVoice::prepareToPlay(double sampleRate)
 {
     bassDrum.setSampleRate(sampleRate);
+    overdrive.setSampleRate(sampleRate);
 }
 
 void DrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, int startSample, int numSamples)
@@ -38,22 +39,25 @@ void DrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, int 
         // get next output sample from va808 bass drum model
         float v_out = bassDrum.process();
 
+
         //===========================================
         //WRITING OUTPUT TO BUFFER
 
-        float currentSample = v_out;
+        //float currentSample = v_out * outputGain;
+
+        float currentSample = overdrive.process(v_out * outputGain * 5.0f);
 
         // for each channel, write the currentSample float to the output
         for (int chan = 0; chan < outputBuffer.getNumChannels(); chan++)
         {
             // The output sample is scaled by 0.2 so that it is not too loud by default
-            outputBuffer.addSample(chan, sampleIndex, currentSample * outputGain);
+            outputBuffer.addSample(chan, sampleIndex, currentSample);
         }
         
     }
 }
 
-void DrumSynthVoice::updateDrumParams(const float level, const float tone, const float decay)
+void DrumSynthVoice::updateDrumParams(const float level, const float tone, const float decay, const float tuning)
 {
-    bassDrum.updateParams(level, tone, decay);
+    bassDrum.updateParams(level, tone, decay, tuning);
 }

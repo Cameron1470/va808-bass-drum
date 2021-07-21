@@ -48,6 +48,9 @@ private:
     // a dial for controlling the bass drum decay parameter
     CustomDial decay;
 
+    // a dial for controlling the bass drum tuning (circuit bending modification)
+    CustomDial tuning;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(VA808BassDrumAudioProcessorEditor)
 
 };

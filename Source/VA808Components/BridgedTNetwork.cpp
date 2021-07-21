@@ -82,10 +82,11 @@ float BridgedTNetwork::process(float v_plus, float v_rp)
 void BridgedTNetwork::opAmpClip()
 {
     // hard limit on the value of the bridged-T output defined by the value being supplied to the op-amp
-    if (v_bt > B2)
+    if (v_bt > B2 || v_bt < -B2)
     {
-        v_bt = B2;
+        v_bt = 15.0f * tanh(v_bt / 15.0f);
     }
+
 }
 
 void BridgedTNetwork::postprocessUpdate(float v_plus, float v_fb, float v_rp)
@@ -111,6 +112,17 @@ void BridgedTNetwork::postprocessUpdate(float v_plus, float v_fb, float v_rp)
     updateCoefficients();
 }
 
+void BridgedTNetwork::updateTuning(float tuningParam)
+{
+    if (tuningParam < 0.5f)
+    {
+        r165 = tuningParam * 2.0f * 47000.0f;
+    }
+    else
+    {
+        r165 = 47000.0f + ((tuningParam - 0.5f) * 2.0f * 53000.0f);
+    }
+}
 
 //=======================================
 

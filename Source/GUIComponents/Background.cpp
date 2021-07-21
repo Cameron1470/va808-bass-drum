@@ -26,7 +26,7 @@ Background::Background()
     labelTwo.setColour(juce::Label::textColourId, juce::Colour(194, 105, 35));
     labelTwo.setJustificationType(juce::Justification::right);
     addAndMakeVisible(labelAuthor);
-    labelAuthor.setFont(juce::Font(14.0f));
+    labelAuthor.setFont(juce::Font(10.0f));
     labelAuthor.setColour(juce::Label::textColourId, juce::Colour(226, 195, 79));
     labelAuthor.setJustificationType(juce::Justification::right);
 
@@ -43,6 +43,19 @@ Background::Background()
     addAndMakeVisible(rum);
     rum.setFont(smallFont);
     rum.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
+
+    addAndMakeVisible(C);
+    C.setFont(bigFont);
+    C.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
+    addAndMakeVisible(ircuit);
+    ircuit.setFont(smallFont);
+    ircuit.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
+    addAndMakeVisible(M);
+    M.setFont(bigFont);
+    M.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
+    addAndMakeVisible(ods);
+    ods.setFont(smallFont);
+    ods.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
 
 }
 
@@ -73,6 +86,8 @@ void Background::paint (juce::Graphics& g)
     g.setColour(juce::Colour(229, 216, 181));
     juce::Rectangle<float> labelBox{ 15, 325, 90, 32 };
     g.fillRoundedRectangle(labelBox, cornerSize);
+    juce::Rectangle<float> modLabelBox{ 118,325,204, 32 };
+    g.fillRoundedRectangle(modLabelBox, cornerSize);
 
     //===================================================================
     // this next section is adding the stylized boxes at the bottom of the window
@@ -140,4 +155,10 @@ void Background::resized()
     ass.setBounds(30, 328, 90, 32);
     D.setBounds(54, 325, 90, 32);
     rum.setBounds(69, 328, 90, 32);
+
+    C.setBounds(165, 325, 90, 32);
+    ircuit.setBounds(179, 328, 90, 32);
+    M.setBounds(220, 325, 90, 32);
+    ods.setBounds(236, 328, 90, 32);
+
 }

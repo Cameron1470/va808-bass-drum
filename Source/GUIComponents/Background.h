@@ -36,13 +36,20 @@ private:
     // title labels giving the name and authorship
     juce::Label labelOne{ {}, "TR-808 BD" };
     juce::Label labelTwo{ {}, "Virtual Analogue Model" };
-    juce::Label labelAuthor{ {}, "by Cameron Smith" };
+    juce::Label labelAuthor{ {}, "BY CAMERON SMITH" };
     
     // labels for the "bass drum" label, seperated out with capitilizations for accruate resizing
     juce::Label B{ {}, "B" };
     juce::Label ass{ {}, "ASS" };
     juce::Label D{ {}, "D" };
     juce::Label rum{ {}, "RUM" };
+
+    juce::Label C{ {}, "C" };
+    juce::Label ircuit{ {}, "IRCUIT" };
+    juce::Label M{ {}, "M" };
+    juce::Label ods{ {}, "ODS" };
+
+
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Background)
 };

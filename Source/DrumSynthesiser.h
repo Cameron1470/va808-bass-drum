@@ -14,6 +14,7 @@
 
 #include <JuceHeader.h>
 #include "VA808BassDrum.h"
+#include "Overdrive.h"
 
 
 // ===========================
@@ -111,8 +112,9 @@ public:
      @param level parameter
      @param tone parameter
      @param decay parameter
+     @param tuning parameter
      */
-    void updateDrumParams(const float level, const float tone, const float decay);
+    void updateDrumParams(const float level, const float tone, const float decay, const float tuning);
 
 private:
     //--------------------------------------------------------------------------
@@ -122,5 +124,7 @@ private:
 
     /// Adjustable gain value for the output level
     float outputGain = 0.7f;
+
+    Overdrive overdrive;
 
 };

@@ -11,6 +11,7 @@
 */
 
 #include "FeedbackBuffer.h"
+#include <math.h>
 
 void FeedbackBuffer::setSampleRate(float sampleRate)
 {
@@ -30,9 +31,10 @@ float FeedbackBuffer::process(float v_bt)
     v_fbPrev1 = v_fb;
 
     // feedback buffer output op-amp clip
-    if (v_fb < -B2)
+    if (v_bt > B2 || v_bt < -B2)
     {
-        v_fb = -B2;
+        //v_bt = B2;
+        v_bt = 15.0f * tanh(v_bt / 15.0f);
     }
 
     return v_fb;

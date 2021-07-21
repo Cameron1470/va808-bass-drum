@@ -77,7 +77,7 @@ float VA808BassDrum::process()
     return v_out;
 }
 
-void VA808BassDrum::updateParams(float _level, float _tone, float _decay)
+void VA808BassDrum::updateParams(float _level, float _tone, float _decay, float _tuning)
 {
     if (level != _level)
     {
@@ -97,4 +97,9 @@ void VA808BassDrum::updateParams(float _level, float _tone, float _decay)
         feedbackBuffer.updateCoefficients(decay);
     }
 
+    if (tuning != _tuning)
+    {
+        tuning = _tuning;
+        bridgedTNetwork.updateTuning(tuning);
+    }
 }
