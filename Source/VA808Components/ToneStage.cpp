@@ -12,6 +12,7 @@
 */
 
 #include "ToneStage.h"
+#include <math.h>
 
 void ToneStage::setSampleRate(float sampleRate)
 {
@@ -36,8 +37,9 @@ float ToneStage::process(float v_bt)
 
 void ToneStage::updateCoefficients(float _tone)
 {
+    //update tone
     tone = _tone;
-    
+
     // calculating the equivalent resistance of the network, R171 + (R172 || VR5) 
     float r_eq = r171 + r172 * vr5 * (1.0f - tone) / (r172 + vr5 * (1.0f - tone));
 

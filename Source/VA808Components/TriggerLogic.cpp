@@ -21,13 +21,13 @@ void TriggerLogic::updateSampleRate(float sampleRate)
     pulseLengthInSamples = round(pulseLengthInSeconds * sampleRate);
 
     // update envelope length in samples by multiplying 5ms time duration and sample rate
-    int envLengthInSamples = round(pulseLengthInSeconds * sampleRate);
+    int envLengthInSamples = round(envLengthInSeconds * sampleRate);
 
     // calculating a tail length for the envelope decay in samples
-    int tailLength = round(envTailLengthInSeconds * sampleRate);
+    int tailLengthInSamples = round(envTailLengthInSeconds * sampleRate);
 
     // calculating the total length of the envelope, main pulse and tail
-    totalEnvLength = envLengthInSamples + tailLength;
+    totalEnvLength = envLengthInSamples + tailLengthInSamples;
 
     // creating a temporary vector for storing the pulse 
     std::vector<float> envelope;

@@ -105,14 +105,22 @@ public:
     }
     //--------------------------------------------------------------------------
 
+    /**
+     Used to update the current parameters of the TR-808 bass drum
+
+     @param level parameter
+     @param tone parameter
+     @param decay parameter
+     */
     void updateDrumParams(const float level, const float tone, const float decay);
 
 private:
     //--------------------------------------------------------------------------
 
+    /// Instance of the TR-808 bass drum class
     VA808BassDrum bassDrum;
 
-    /// adjustable gain value for the output level
-    float outputGain = 0.1;
+    /// Adjustable gain value for the output level
+    float outputGain = 0.7f;
 
 };
