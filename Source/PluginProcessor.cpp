@@ -203,6 +203,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout VA808BassDrumAudioProcessor:
     params.push_back(std::make_unique<juce::AudioParameterFloat>("TONE", "Tone", juce::NormalisableRange<float> {0.0f, 1.0f, 0.02f}, 0.8f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("DECAY", "Decay", juce::NormalisableRange<float> {0.0f, 1.0f, 0.02f}, 0.5f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("TUNING", "Tuning", juce::NormalisableRange<float> {0.0f, 1.0f, 0.02f}, 0.5f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("MIX", "Mix", juce::NormalisableRange<float> {0.0f, 1.0f, 0.002f}, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("GAIN", "Gain", juce::NormalisableRange<float> {0.0f, 1.0f, 0.002f}, 0.0f));
+
 
     return { params.begin(), params.end() };
 }
@@ -213,12 +216,14 @@ void VA808BassDrumAudioProcessor::setParams()
     auto& tone = *parameters.getRawParameterValue("TONE");
     auto& decay = *parameters.getRawParameterValue("DECAY");
     auto& tuning = *parameters.getRawParameterValue("TUNING");
+    auto& mix = *parameters.getRawParameterValue("MIX");
+    auto& gain = *parameters.getRawParameterValue("GAIN");
     
     for (int i = 0; i < drumSynth.getNumVoices(); i++)
     {
         if (auto voice = dynamic_cast<DrumSynthVoice*>(drumSynth.getVoice(i)))
         {
-            voice->updateDrumParams(level, tone, decay, tuning);
+            voice->updateDrumParams(level, tone, decay, tuning, mix, gain);
         }
 
     }

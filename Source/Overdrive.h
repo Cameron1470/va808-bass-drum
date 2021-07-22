@@ -60,5 +60,4 @@ private:
     float uPrev = 0.0f;
 
     float v;
-    bool firstSamp = true;
 };

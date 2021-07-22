@@ -20,7 +20,7 @@ Background::Background()
     addAndMakeVisible(labelOne);
     labelOne.setFont(juce::Font(35.0f));
     labelOne.setColour(juce::Label::textColourId, juce::Colour(156, 53, 34));
-    labelOne.setJustificationType(juce::Justification::right);
+    labelOne.setJustificationType(juce::Justification::left);
     addAndMakeVisible(labelTwo);
     labelTwo.setFont(juce::Font(20.0f));
     labelTwo.setColour(juce::Label::textColourId, juce::Colour(194, 105, 35));
@@ -57,6 +57,13 @@ Background::Background()
     ods.setFont(smallFont);
     ods.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
 
+    addAndMakeVisible(O);
+    O.setFont(bigFont);
+    O.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
+    addAndMakeVisible(verdrive);
+    verdrive.setFont(smallFont);
+    verdrive.setColour(juce::Label::textColourId, juce::Colour(32, 22, 2));
+
 }
 
 Background::~Background()
@@ -86,8 +93,11 @@ void Background::paint (juce::Graphics& g)
     g.setColour(juce::Colour(229, 216, 181));
     juce::Rectangle<float> labelBox{ 15, 325, 90, 32 };
     g.fillRoundedRectangle(labelBox, cornerSize);
-    juce::Rectangle<float> modLabelBox{ 118,325,204, 32 };
+    juce::Rectangle<float> modLabelBox{ 120, 325, 96, 32 };
     g.fillRoundedRectangle(modLabelBox, cornerSize);
+    juce::Rectangle<float> overdriveLabelBox{ 225, 325, 96, 32 };
+    g.fillRoundedRectangle(overdriveLabelBox, cornerSize);
+
 
     //===================================================================
     // this next section is adding the stylized boxes at the bottom of the window
@@ -156,9 +166,12 @@ void Background::resized()
     D.setBounds(54, 325, 90, 32);
     rum.setBounds(69, 328, 90, 32);
 
-    C.setBounds(165, 325, 90, 32);
-    ircuit.setBounds(179, 328, 90, 32);
-    M.setBounds(220, 325, 90, 32);
-    ods.setBounds(236, 328, 90, 32);
+    C.setBounds(116, 325, 90, 32);
+    ircuit.setBounds(130, 328, 90, 32);
+    M.setBounds(170, 325, 90, 32);
+    ods.setBounds(186, 328, 90, 32);
+
+    O.setBounds(233, 325, 90, 32);
+    verdrive.setBounds(249, 328, 90, 32);
 
 }

@@ -33,12 +33,6 @@ void Overdrive::setSampleRate(float SR)
 float Overdrive::process(float input)
 {
     float p = D * Ha * (Hb * xPrev + B * uPrev + C * iPrev) + (D * Ha * B + E) * input;
-
-    //if (firstSamp)
-    //{
-    //    v = p / (1.0f - K * G);
-    //    firstSamp = false;
-    //}
     
     float eps = 1.0f;
     int iter = 0;

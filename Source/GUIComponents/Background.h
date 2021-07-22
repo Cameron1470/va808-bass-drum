@@ -35,7 +35,7 @@ private:
 
     // title labels giving the name and authorship
     juce::Label labelOne{ {}, "TR-808 BD" };
-    juce::Label labelTwo{ {}, "Virtual Analogue Model" };
+    juce::Label labelTwo{ {}, "VIRTUAL ANALOGUE MODEL" };
     juce::Label labelAuthor{ {}, "BY CAMERON SMITH" };
     
     // labels for the "bass drum" label, seperated out with capitilizations for accruate resizing
@@ -49,6 +49,8 @@ private:
     juce::Label M{ {}, "M" };
     juce::Label ods{ {}, "ODS" };
 
+    juce::Label O{ {}, "O" };
+    juce::Label verdrive{ {}, "VERDRIVE" };
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Background)

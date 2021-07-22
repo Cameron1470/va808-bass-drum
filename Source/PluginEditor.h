@@ -51,6 +51,12 @@ private:
     // a dial for controlling the bass drum tuning (circuit bending modification)
     CustomDial tuning;
 
+    // a dial for controlling the dry/wet mix of the overdrive
+    CustomDial mix;
+
+    // a dial for controlling the gain of the overdrive
+    CustomDial gain;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(VA808BassDrumAudioProcessorEditor)
 
 };
