@@ -17,6 +17,7 @@
 #include "PluginProcessor.h"
 #include "GUIComponents/Background.h"
 #include "GUIComponents/CustomDial.h"
+#include "GUIComponents/CustomButton.h"
 
 //==============================================================================
 /**
@@ -47,6 +48,8 @@ private:
 
     // a dial for controlling the bass drum decay parameter
     CustomDial decay;
+
+    CustomButton decayLimiter;
 
     // a dial for controlling the bass drum tuning (circuit bending modification)
     CustomDial tuning;

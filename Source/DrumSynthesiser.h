@@ -114,7 +114,7 @@ public:
      @param decay parameter
      @param tuning parameter
      */
-    void updateDrumParams(const float level, const float tone, const float decay, const float tuning, const float mix, const float gain);
+    void updateDrumParams(const float level, const float tone, const float decay, const float tuning, const float mix, const float gain, const float buttonState);
 
 private:
     //--------------------------------------------------------------------------
@@ -129,5 +129,7 @@ private:
 
     float overdriveMix = 0.0f;
     float overdriveGain = 0.0f;
+
+    bool decayLimiterActive = false;
 
 };

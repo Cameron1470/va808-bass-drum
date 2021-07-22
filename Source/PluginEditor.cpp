@@ -22,7 +22,8 @@ VA808BassDrumAudioProcessorEditor::VA808BassDrumAudioProcessorEditor (VA808BassD
     decay("DECAY", juce::Colour(245, 243, 252), audioProcessor.parameters, "DECAY"),
     tuning("TUNING", juce::Colour(245, 243, 252), audioProcessor.parameters, "TUNING"),
     mix("MIX", juce::Colour(245, 243, 252), audioProcessor.parameters, "MIX"),
-    gain("GAIN", juce::Colour(245, 243, 252), audioProcessor.parameters, "GAIN")
+    gain("GAIN", juce::Colour(245, 243, 252), audioProcessor.parameters, "GAIN"),
+    decayLimiter(audioProcessor.parameters, "BUTTON STATE")
 {
     // set fixed window size
     setSize (327, 400);
@@ -32,6 +33,7 @@ VA808BassDrumAudioProcessorEditor::VA808BassDrumAudioProcessorEditor (VA808BassD
     addAndMakeVisible(level);
     addAndMakeVisible(tone);
     addAndMakeVisible(decay);
+    addAndMakeVisible(decayLimiter);
     addAndMakeVisible(tuning);
     addAndMakeVisible(mix);
     addAndMakeVisible(gain);
@@ -56,6 +58,7 @@ void VA808BassDrumAudioProcessorEditor::resized()
     level.setBounds(10, 7, 100, 105);
     tone.setBounds(10, 112, 100, 105);
     decay.setBounds(10, 217, 100, 105);
+    decayLimiter.setBounds(118, 106, 100, 105);
     tuning.setBounds(118, 217, 100, 105);
     mix.setBounds(223, 112, 100, 105);
     gain.setBounds(223, 217, 100, 105);

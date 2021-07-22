@@ -59,6 +59,9 @@
         <FILE id="yogqEC" name="CustomDial.h" compile="0" resource="0" file="Source/GUIComponents/CustomDial.h"/>
         <FILE id="c1xxHu" name="Background.h" compile="0" resource="0" file="Source/GUIComponents/Background.h"/>
         <FILE id="etm7Be" name="Background.cpp" compile="1" resource="0" file="Source/GUIComponents/Background.cpp"/>
+        <FILE id="eEzLUM" name="CustomButton.h" compile="0" resource="0" file="Source/GUIComponents/CustomButton.h"/>
+        <FILE id="wLCk1L" name="CustomButton.cpp" compile="1" resource="0"
+              file="Source/GUIComponents/CustomButton.cpp"/>
       </GROUP>
       <FILE id="Qu4V3t" name="icon.PNG" compile="0" resource="1" file="Source/icon.PNG"/>
     </GROUP>
