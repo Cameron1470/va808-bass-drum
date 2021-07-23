@@ -20,8 +20,8 @@ CustomButton::CustomButton(juce::AudioProcessorValueTreeState& parameters, juce:
     decayLimButton.setColour(juce::TextButton::buttonColourId, juce::Colour(43, 42, 48));
     decayLimButton.setColour(juce::TextButton::buttonOnColourId, juce::Colour(194, 105, 35));
     
-    decayLimButton.setButtonText("OFF");
-    decayLimButton.setToggleState(false, juce::NotificationType::dontSendNotification);
+    decayLimButton.setButtonText("ON");
+    decayLimButton.setToggleState(true, juce::NotificationType::dontSendNotification);
     decayLimButton.setClickingTogglesState(true);
     
     decayLimButton.addListener(this);

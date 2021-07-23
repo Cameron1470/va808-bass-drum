@@ -102,5 +102,5 @@ private:
     /// Current value of tuning parameter, updated from the GUI
     float tuning;
 
-    bool decayLimiterActive = false;
+    bool decayLimiterActive = true;
 };

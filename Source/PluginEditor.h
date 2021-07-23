@@ -49,6 +49,7 @@ private:
     // a dial for controlling the bass drum decay parameter
     CustomDial decay;
 
+    // a button for turning the decay limiting ability on and off
     CustomButton decayLimiter;
 
     // a dial for controlling the bass drum tuning (circuit bending modification)

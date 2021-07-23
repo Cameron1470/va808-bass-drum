@@ -108,6 +108,7 @@ void VA808BassDrumAudioProcessor::changeProgramName (int index, const juce::Stri
 //==============================================================================
 void VA808BassDrumAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    // passing the current sample rate to the synthesizer class
     drumSynth.setCurrentPlaybackSampleRate(sampleRate);
     
     for (int i = 0; i < voiceCount; i++)
@@ -155,10 +156,13 @@ void VA808BassDrumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
 {
     juce::ScopedNoDenormals noDenormals;
     
+    // removing any input audio, ensuring the buffer is clear
     buffer.clear();
 
+    // update parameters
     setParams();
 
+    // handing the synthesizer class the audio buffer to be filled
     drumSynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 
 }
@@ -199,19 +203,21 @@ juce::AudioProcessorValueTreeState::ParameterLayout VA808BassDrumAudioProcessor:
 {
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
 
+    // adding parameters to the value tree state
     params.push_back(std::make_unique<juce::AudioParameterFloat>("LEVEL", "Level", juce::NormalisableRange<float> {0.0f, 1.0f, 0.02f}, 0.5f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("TONE", "Tone", juce::NormalisableRange<float> {0.0f, 1.0f, 0.02f}, 0.8f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("DECAY", "Decay", juce::NormalisableRange<float> {0.0f, 1.0f, 0.02f}, 0.5f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("TUNING", "Tuning", juce::NormalisableRange<float> {0.0f, 1.0f, 0.02f}, 0.5f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("MIX", "Mix", juce::NormalisableRange<float> {0.0f, 1.0f, 0.002f}, 0.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("GAIN", "Gain", juce::NormalisableRange<float> {0.0f, 1.0f, 0.002f}, 0.0f));
-    params.push_back(std::make_unique<juce::AudioParameterBool>("BUTTON STATE", "Button State", false));
+    params.push_back(std::make_unique<juce::AudioParameterBool>("BUTTON STATE", "Button State", true));
 
     return { params.begin(), params.end() };
 }
 
 void VA808BassDrumAudioProcessor::setParams()
 {
+    // getting parameter value from the paramter value tree state
     auto& level = *parameters.getRawParameterValue("LEVEL");
     auto& tone = *parameters.getRawParameterValue("TONE");
     auto& decay = *parameters.getRawParameterValue("DECAY");
@@ -224,9 +230,8 @@ void VA808BassDrumAudioProcessor::setParams()
     {
         if (auto voice = dynamic_cast<DrumSynthVoice*>(drumSynth.getVoice(i)))
         {
-            voice->updateDrumParams(level, tone, decay, tuning, mix, gain, buttonState);
-
-            
+            // passing all the up-to-date parameters to the synthesizer voice class
+            voice->updateDrumParams(level, tone, decay, tuning, mix, gain, buttonState); 
         }
 
     }

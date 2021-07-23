@@ -7,7 +7,7 @@
     Author:  Cameron Smith, UoE s1338237
 
     This class manages the overdrive effect on the output of the bass drum.
-    Based on the asymmetric diode clipper
+    Based on the asymmetric diode clipper circuit
 
   ==============================================================================
 */
@@ -17,24 +17,46 @@
 class Overdrive
 {
 public:
+    //--------------------------------------------------------------------------
+    /**
+    Updates sample rate in the class private variables,
+
+    Subsequently updates the necessary coefficients of the model 
+
+    @param sample rate in Hz
+    */
     void setSampleRate(float SR);
 
+
+    //--------------------------------------------------------------------------
+    /**
+    Get current sample of the output of the assymetric diode clipper
+
+    @param the input voltage to the overdrive circuit
+    */
     float process(float input);
 
 
 private:
+    /// Resistance value (1000 Ohms)
     float resistance = 1000.0f;
 
+    /// Capacitance value (33 nF)
     float capacitance = 3.3e-8;
-
+    
+    /// Diode saturation current (amps)
     float satCurrent = 2.52e-9;
 
+    /// Diode thermal voltage (volts)
     float diodeThermalVoltage = 0.02583f;
 
+    /// Diode ideality factor
     float diodeIdealityFac = 1.752f;
 
+    /// Tolerance level for Newton-Raphson
     float tolerance = 1.0e-9;
 
+    /// The maximum number of iterations before breaking out of NR
     int maxIterations = 100;
 
     // STATE SPACE PARAMETERS
@@ -53,11 +75,14 @@ private:
     float Hb;
     float K;
 
+    /// Scalar variable, linear approximation of nonlinearity
     float G;
 
+    // previous variable, x(n-1), i(n-1) and u(n-1)
     float xPrev = 0.0f;
     float iPrev = 0.0f;
     float uPrev = 0.0f;
 
+    /// current output, will be solved in NR and then returned as output
     float v;
 };
