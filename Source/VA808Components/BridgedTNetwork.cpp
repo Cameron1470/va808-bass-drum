@@ -116,7 +116,7 @@ void BridgedTNetwork::updateTuning(float tuningParam)
 {
     if (tuningParam < 0.5f)
     {
-        r165 = tuningParam * 2.0f * 47000.0f;
+        r165 = 24000.0f + (tuningParam * 2.0f * 23000.0f);
     }
     else
     {

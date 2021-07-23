@@ -73,12 +73,10 @@ void CustomButton::changeState(bool buttonState)
     if (buttonState == false)
     {
         decayLimButton.setButtonText("OFF");
-        //decayLimButton.setToggleState(true, juce::NotificationType::dontSendNotification);
     }
     else if (buttonState == true)
     {
         decayLimButton.setButtonText("ON");
-        //decayLimButton.setToggleState(false, juce::NotificationType::dontSendNotification);
     }
 
 

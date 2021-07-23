@@ -130,6 +130,5 @@ private:
     float overdriveMix = 0.0f;
     float overdriveGain = 0.0f;
 
-    bool decayLimiterActive = false;
 
 };

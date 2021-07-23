@@ -77,7 +77,7 @@ float VA808BassDrum::process()
     return v_out;
 }
 
-void VA808BassDrum::updateParams(float _level, float _tone, float _decay, float _tuning)
+void VA808BassDrum::updateParams(float _level, float _tone, float _decay, float _tuning, float _buttonState)
 {
     if (level != _level)
     {
@@ -94,12 +94,44 @@ void VA808BassDrum::updateParams(float _level, float _tone, float _decay, float 
     if (decay != _decay)
     {
         decay = _decay;
-        feedbackBuffer.updateCoefficients(decay);
+        updateDecay();
     }
 
     if (tuning != _tuning)
     {
         tuning = _tuning;
         bridgedTNetwork.updateTuning(tuning);
+        updateDecay();
+    }
+
+    if (decayLimiterActive != bool(_buttonState))
+    {
+        decayLimiterActive = bool(_buttonState);
+
+        updateDecay();
+    }
+    
+}
+
+void VA808BassDrum::updateDecay()
+{
+    if (decayLimiterActive)
+    {
+        if (tuning < 0.5f)
+        {
+            float ratio = tuning * 2.0f;
+
+            feedbackBuffer.updateCoefficients(decay * (0.1f + 0.9f * ratio));
+        }
+        else if (tuning >= 0.5f)
+        {
+            float ratio = 1.0f - ((tuning - 0.5f) * 2.0f);
+
+            feedbackBuffer.updateCoefficients(decay * (0.2f + 0.8f * ratio));
+        }
+    }
+    else
+    {
+        feedbackBuffer.updateCoefficients(decay);
     }
 }

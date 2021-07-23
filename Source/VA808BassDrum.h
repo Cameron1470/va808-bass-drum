@@ -60,7 +60,9 @@ public:
      @param decay parameter between 0 and 1
      @param tuning parameter between 0 and 1
      */
-    void updateParams(float _level, float _tone, float _decay, float _tuning);
+    void updateParams(float _level, float _tone, float _decay, float _tuning, float _buttonState);
+
+    void updateDecay();
 
 private:
     /// Instance of the TriggerLogic class for the trigger logic process block
@@ -99,4 +101,6 @@ private:
 
     /// Current value of tuning parameter, updated from the GUI
     float tuning;
+
+    bool decayLimiterActive = false;
 };

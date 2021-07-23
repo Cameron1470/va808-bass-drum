@@ -47,12 +47,8 @@ void DrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, int 
 
         float overdrivenSample = overdrive.process(v_out * outputGain * (1.f + overdriveGain * 4.0f));
 
-        float currentSample = 0.0f;
+        float currentSample = (1.0f - overdriveMix) * drySample + overdriveMix * overdrivenSample;
 
-        if (decayLimiterActive == true)
-        {
-            currentSample = (1.0f - overdriveMix) * drySample + overdriveMix * overdrivenSample;
-        }
 
 
         // for each channel, write the currentSample float to the output
@@ -67,10 +63,9 @@ void DrumSynthVoice::renderNextBlock(juce::AudioSampleBuffer& outputBuffer, int 
 
 void DrumSynthVoice::updateDrumParams(const float level, const float tone, const float decay, const float tuning, const float mix, const float gain, const float buttonState)
 {
-    bassDrum.updateParams(level, tone, decay, tuning);
+    bassDrum.updateParams(level, tone, decay, tuning, buttonState);
 
     overdriveMix = mix;
     overdriveGain = gain;
 
-    decayLimiterActive = bool(buttonState);
 }
