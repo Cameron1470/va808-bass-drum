@@ -125,10 +125,12 @@ private:
     /// Adjustable gain value for the output level
     float outputGain = 0.7f;
 
+    /// Instance of the overdive class
     Overdrive overdrive;
 
-    float overdriveMix = 0.0f;
-    float overdriveGain = 0.0f;
+    /// Smoothed value of the overdrive gain
+    juce::SmoothedValue<float> smoothedGain;
 
-
+    /// Smoothed value of the overdrive mix
+    juce::SmoothedValue<float> smoothedMix;
 };

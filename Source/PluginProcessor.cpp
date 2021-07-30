@@ -118,6 +118,8 @@ void VA808BassDrumAudioProcessor::prepareToPlay (double sampleRate, int samplesP
         // providing the voices with essential information (sample rate)
         v->prepareToPlay(sampleRate);
     }
+
+    
 }
 
 void VA808BassDrumAudioProcessor::releaseResources()
@@ -231,7 +233,7 @@ void VA808BassDrumAudioProcessor::setParams()
         if (auto voice = dynamic_cast<DrumSynthVoice*>(drumSynth.getVoice(i)))
         {
             // passing all the up-to-date parameters to the synthesizer voice class
-            voice->updateDrumParams(level, tone, decay, tuning, mix, gain, buttonState); 
+            voice->updateDrumParams(level, tone, decay, tuning, mix, gain, buttonState);
         }
 
     }

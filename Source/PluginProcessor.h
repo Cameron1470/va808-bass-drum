@@ -71,6 +71,8 @@ private:
     /// Number of voices the synthesizer has
     int voiceCount = 1;
 
+    
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VA808BassDrumAudioProcessor)
 };
