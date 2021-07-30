@@ -91,4 +91,5 @@ private:
 
     /// pointer to v_env where the envelope data will be stored
     std::vector<float> v_env;
+
 };

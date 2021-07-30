@@ -81,7 +81,6 @@ void TriggerLogic::updateSampleRate(float sampleRate)
         v_env[index] = 0.05f + envAmp - envelope[n];
 
     }
-
 }
 
 void TriggerLogic::setTriggerActive(float velocity)
@@ -96,6 +95,7 @@ void TriggerLogic::setTriggerActive(float velocity)
 
         // update the common trigger signal amplitude (4-5V), dependent on velocity
         v_ct = 4.0f + (velocity * 1.0f);
+
     }
 }
 

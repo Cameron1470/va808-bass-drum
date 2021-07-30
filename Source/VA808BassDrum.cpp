@@ -121,13 +121,28 @@ void VA808BassDrum::updateDecay()
         {
             float ratio = tuning * 2.0f;
 
-            feedbackBuffer.updateCoefficients(decay * (0.1f + 0.9f * ratio));
+            // logarithmic mapping to mirror to logarithmic potentiometer in the TR-808 tone knob
+            float y_m = 0.3f;
+            float b = powf(1.0f / y_m - 1.0f, 2.0f);
+            float a = 1.0f / (b - 1.0f);
+
+            float logRatio = a * powf(b, ratio) - a;
+
+
+            feedbackBuffer.updateCoefficients(decay * (0.16f + 0.84f * logRatio));
         }
         else if (tuning >= 0.5f)
         {
             float ratio = 1.0f - ((tuning - 0.5f) * 2.0f);
 
-            feedbackBuffer.updateCoefficients(decay * (0.2f + 0.8f * ratio));
+            // logarithmic mapping to mirror to logarithmic potentiometer in the TR-808 tone knob
+            float y_m = 0.3f;
+            float b = powf(1.0f / y_m - 1.0f, 2.0f);
+            float a = 1.0f / (b - 1.0f);
+
+            float logRatio = a * powf(b, ratio) - a;
+
+            feedbackBuffer.updateCoefficients(decay * (0.22f + 0.78f * logRatio));
         }
     }
     else

@@ -39,8 +39,8 @@ void ToneStage::updateCoefficients(float _tone)
 {
 
     // logarithmic mapping to mirror to logarithmic potentiometer in the TR-808 tone knob
-    float y_m = 0.1f;
-    float b = powf(1.0f / y_m - 1.0f, 2);
+    float y_m = 0.6f;
+    float b = powf(1.0f / y_m - 1.0f, 2.0f);
     float a = 1.0f / (b - 1.0f);
 
     tone = a * powf(b, _tone) - a;
